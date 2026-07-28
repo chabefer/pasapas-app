@@ -35,6 +35,32 @@
     min-height: 100vh;
   }
 
+  /* ---------- Language toggle ---------- */
+  .lang-toggle {
+    position: fixed;
+    top: 14px; right: 14px;
+    display: flex;
+    border: 2px solid var(--wood-light);
+    border-radius: 999px;
+    overflow: hidden;
+    background: var(--cream);
+    box-shadow: 0 2px 6px rgba(90,80,60,0.15);
+    font-size: 13px;
+    letter-spacing: 1px;
+    z-index: 10;
+  }
+  .lang-toggle button {
+    font-family: 'Georgia', serif;
+    font-size: 13px;
+    letter-spacing: 1px;
+    border: none;
+    background: transparent;
+    color: var(--wood);
+    padding: 5px 12px;
+    cursor: pointer;
+  }
+  .lang-toggle button.active { background: var(--forest); color: #fff; }
+
   /* ---------- Hero ---------- */
   .hero {
     text-align: center;
@@ -184,6 +210,11 @@
 </head>
 <body>
 
+  <div class="lang-toggle" role="group" aria-label="Language">
+    <button type="button" data-lang="en">EN</button>
+    <button type="button" data-lang="fr">FR</button>
+  </div>
+
   <header class="hero">
     <div class="wordmark">Pas à Pas</div>
     <svg width="150" height="206" viewBox="0 0 160 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Eliel the elf">
@@ -233,33 +264,33 @@
       <circle cx="35" cy="191" r="5" fill="#f5d6b8" stroke="#d4a574" stroke-width="1"/>
       <circle cx="125" cy="191" r="5" fill="#f5d6b8" stroke="#d4a574" stroke-width="1"/>
     </svg>
-    <h1 class="hero-title">Eliel's Adventures</h1>
-    <p class="subtitle">Help Eliel save his forest.</p>
+    <h1 class="hero-title" data-i18n="heroTitle">Eliel's Adventures</h1>
+    <p class="subtitle" data-i18n="subtitle">Help Eliel save his forest.</p>
   </header>
 
   <main class="quests">
 
-    <a class="card playable" href="chapter1/">
-      <div class="eyebrow">Chapter 1</div>
-      <div class="card-title">Revenge of the Gorns</div>
-      <p class="card-flavor">The forest has been burned. Replant the fields, one magic square at a time.</p>
+    <a class="card playable" id="ch1-link" href="chapter1/">
+      <div class="eyebrow" data-i18n="ch1Eyebrow">Chapter 1</div>
+      <div class="card-title" data-i18n="ch1Title">Revenge of the Gorns</div>
+      <p class="card-flavor" data-i18n="ch1Flavor">The forest has been burned. Replant the fields, one magic square at a time.</p>
       <div class="tags">
-        <span class="tag"><span class="seed"></span>area</span>
-        <span class="tag">perimeter</span>
-        <span class="tag">multiplication</span>
+        <span class="tag"><span class="seed"></span><span data-i18n="tagArea">area</span></span>
+        <span class="tag" data-i18n="tagPerimeter">perimeter</span>
+        <span class="tag" data-i18n="tagMultiplication">multiplication</span>
       </div>
-      <span class="play-btn">▶ Play</span>
+      <span class="play-btn" data-i18n="play">▶ Play</span>
     </a>
 
     <div class="card locked" aria-disabled="true">
-      <div class="ribbon">Coming soon</div>
-      <div class="eyebrow">Chapter 2</div>
-      <div class="card-title">🔒 The Power of the Root</div>
-      <p class="card-flavor">Given a field's size, discover the length of its side.</p>
+      <div class="ribbon" data-i18n="comingSoon">Coming soon</div>
+      <div class="eyebrow" data-i18n="ch2Eyebrow">Chapter 2</div>
+      <div class="card-title" data-i18n="ch2Title">🔒 The Power of the Root</div>
+      <p class="card-flavor" data-i18n="ch2Flavor">Given a field's size, discover the length of its side.</p>
       <div class="tags">
-        <span class="tag">square roots</span>
+        <span class="tag" data-i18n="tagRoots">square roots</span>
       </div>
-      <span class="locked-note">Eliel is still writing this tale…</span>
+      <span class="locked-note" data-i18n="lockedNote">Eliel is still writing this tale…</span>
     </div>
 
   </main>
@@ -278,7 +309,88 @@
       <rect x="512" y="53" width="7" height="14" rx="1"/>
     </g>
   </svg>
-  <div class="footnote">Pas à Pas · step by step</div>
+  <div class="footnote" data-i18n="footnote">Pas à Pas · step by step</div>
+
+<script>
+  // ---- Language dictionary (landing page) ----
+  const STRINGS = {
+    en: {
+      heroTitle: "Eliel's Adventures",
+      subtitle: "Help Eliel save his forest.",
+      ch1Eyebrow: "Chapter 1",
+      ch1Title: "Revenge of the Gorns",
+      ch1Flavor: "The forest has been burned. Replant the fields, one magic square at a time.",
+      tagArea: "area",
+      tagPerimeter: "perimeter",
+      tagMultiplication: "multiplication",
+      play: "▶ Play",
+      comingSoon: "Coming soon",
+      ch2Eyebrow: "Chapter 2",
+      ch2Title: "🔒 The Power of the Root",
+      ch2Flavor: "Given a field's size, discover the length of its side.",
+      tagRoots: "square roots",
+      lockedNote: "Eliel is still writing this tale…",
+      footnote: "Pas à Pas · step by step",
+    },
+    fr: {
+      heroTitle: "Les Aventures d'Eliel",
+      subtitle: "Aide Eliel à sauver sa forêt.",
+      ch1Eyebrow: "Chapitre 1",
+      ch1Title: "La Revanche des Gorns",
+      ch1Flavor: "La forêt a été brûlée. Replante les champs, un carré magique à la fois.",
+      tagArea: "aire",
+      tagPerimeter: "périmètre",
+      tagMultiplication: "multiplication",
+      play: "▶ Jouer",
+      comingSoon: "Bientôt",
+      ch2Eyebrow: "Chapitre 2",
+      ch2Title: "🔒 Le Pouvoir de la Racine",
+      ch2Flavor: "À partir de la taille d'un champ, découvre la longueur de son côté.",
+      tagRoots: "racines carrées",
+      lockedNote: "Eliel écrit encore ce conte…",
+      footnote: "Pas à Pas · pas à pas",
+    },
+  };
+
+  // ---- Resolve language: URL param > localStorage > default 'en' ----
+  function resolveLang() {
+    const p = new URLSearchParams(location.search).get('lang');
+    if (p === 'en' || p === 'fr') { try { localStorage.setItem('pap_lang', p); } catch (e) {} return p; }
+    try { const s = localStorage.getItem('pap_lang'); if (s === 'en' || s === 'fr') return s; } catch (e) {}
+    return 'en';
+  }
+  const LANG = resolveLang();
+
+  // ---- Apply ----
+  function applyLang() {
+    document.documentElement.lang = LANG;
+    const dict = STRINGS[LANG] || STRINGS.en;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (dict[key] != null) el.textContent = dict[key];
+    });
+    // Propagate language into the quest link so a shared /chapter1/ link stays in language
+    const link = document.getElementById('ch1-link');
+    if (link) link.setAttribute('href', LANG === 'en' ? 'chapter1/' : 'chapter1/?lang=' + LANG);
+    // Toggle active state
+    document.querySelectorAll('.lang-toggle button').forEach(b => {
+      b.classList.toggle('active', b.getAttribute('data-lang') === LANG);
+    });
+  }
+  applyLang();
+
+  // ---- Toggle: set + reload in the chosen language ----
+  document.querySelectorAll('.lang-toggle button').forEach(b => {
+    b.addEventListener('click', () => {
+      const to = b.getAttribute('data-lang');
+      if (to === LANG) return;
+      try { localStorage.setItem('pap_lang', to); } catch (e) {}
+      const url = new URL(location.href);
+      url.searchParams.set('lang', to);
+      location.href = url.toString();
+    });
+  });
+</script>
 
 </body>
 </html>
