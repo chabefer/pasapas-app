@@ -819,10 +819,10 @@ const STRINGS = {
     intro_replant: "Peux-tu m'aider à les replanter et à faire renaître ma puissante forêt ?",
     intro_btn_yes: "Oui ! Je vais t'aider !",
     // STEP 1 — magic squares
-    ms_intro: "Pour replanter ma forêt, je dois planter des graines. Mais chaque graine a besoin d'une aire de la taille d'un <strong>carré magique</strong> pour pousser et grandir.",
+    ms_intro: "Pour replanter ma forêt, je dois planter des graines. Mais chaque graine a besoin d'une surface de la taille d'un <strong>carré magique</strong> pour pousser et grandir.",
     ms_this_is: "Voici un carré magique :",
     lbl_one_magic_length: "1 longueur magique",
-    ms_length_def: "On appelle la longueur du côté d'un carré magique la <strong>longueur magique</strong>.",
+    ms_length_def: "La longueur du côté d'un carré magique s'appelle la <strong>longueur magique</strong>.",
     // area cycle (reusable) + call-site intros
     place_squares: "Place des carrés magiques sur le champ pour le couvrir !",
     q_squares_count: "Super, tu as couvert tout le champ ! Combien y a-t-il de carrés magiques ?",
@@ -3663,7 +3663,7 @@ const steps = [
     const demo = document.createElement('div');
     demo.style.cssText = 'display:flex; justify-content:center; margin: 24px 0;';
     demo.innerHTML = `
-      <svg width="120" height="160" viewBox="0 0 120 160">
+      <svg width="240" height="160" viewBox="-60 0 240 160">
         <!-- Magic square: 80px side, positioned at x=20 -->
         <rect x="20" y="10" width="80" height="80" fill="#fffef5" stroke="#3a3a3a" stroke-width="2.5" rx="3"/>
         <circle cx="60" cy="50" r="4" fill="#555"/>
