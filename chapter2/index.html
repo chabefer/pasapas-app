@@ -3920,10 +3920,15 @@ function eTerm(key, html, state) {
     : state === 'current'
       ? 'background:#fffdf2; border:2px solid #6b5e4a;'
       : `background:${REGION[key].fill}; border:1px solid rgba(90,80,60,0.45);`;
-  // vertical-align:middle, not the default baseline: the chips in a row are now one, two or
-  // three lines tall, and on a baseline they hang off it at different heights with the "+"
-  // signs between them at a fourth. Middle puts every term and every "+" on one level.
-  return `<span style="display:inline-block; vertical-align:middle; ${skin}` +
+  // vertical-align:BASELINE, and it has to stay that way (Sylvain). An inline-block sits on the
+  // baseline of its LAST line box, which for a worked-out term is the value — so 18 lands on the
+  // row's own line, level with the "=" and the "+" signs joining the terms, and the product and
+  // its little "=" stack up above it. That is the line the eye reads across.
+  //
+  // It was briefly vertical-align:middle, to stop the chips hanging off the baseline at
+  // different heights. That levelled the BOXES and put the secondary "=" on the row's line
+  // instead of the value — tidier, and wrong about which number the row is adding up.
+  return `<span style="display:inline-block; vertical-align:baseline; ${skin}` +
     ` border-radius:5px; padding:3px 7px; white-space:nowrap;">${html}</span>`;
 }
 
