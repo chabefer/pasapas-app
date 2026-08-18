@@ -574,8 +574,7 @@ registerStrings({
     c2_e_tk_btn: "Let's count them!",
     c2_e_tk_ok: "Twenty, exactly as it promised. So the trick holds: moving the dot two places to the left really does turn hundredths back into magic squares.",
 
-    c2_e_tp1: "There we are — every piece of the field, worked out from its own two sides:",
-    c2_e_tp2: "And here is the same sentence as ground: the field on the left, and on the right the {n} whole magic squares, then the band with its four marked-out patches and its {r} hundredths over, then the strip and the corner.",
+    c2_e_tp1: "There we are — every piece of the field, worked out from its own two sides: the field on the left, and on the right the {n} whole magic squares, then the band with its four marked-out patches and its {r} hundredths over, then the strip and the corner.",
     c2_e_tp3: "Now, Marimon's rule again. He does not care whether a hundred hundredths is a square or not — it only has to be all in one piece, whatever shape it takes. So we may count those four odd-looking patches as four magic squares, when we work out the area and my shopping list. Agreed?",
 
     c2_e_rg1: "Then let's put them where they belong: the four patches over with the whole magic squares, and the odds and ends together.",
@@ -1247,9 +1246,8 @@ registerStrings({
     c2_e_tk_btn: "Allons les compter !",
     c2_e_tk_ok: "Vingt, exactement comme promis. Donc le truc tient : déplacer la virgule de deux rangs vers la gauche transforme bel et bien des centièmes en carrés magiques.",
 
-    c2_e_tp1: "Et voilà — chaque morceau du champ, calculé à partir de ses deux côtés :",
-    c2_e_tp2: "Et voici la même phrase, en terrain : le champ à gauche, et à droite les {n} carrés magiques entiers, puis la bande avec ses quatre parcelles délimitées et ses {r} centièmes qui restent, puis la bande du côté et le coin.",
-    c2_e_tp3: "Maintenant, la règle de Marimon, encore. Il se fiche de savoir si cent centièmes forment un carré ou pas — il faut seulement que ce soit d'un seul tenant, quelle que soit la forme. Donc on a le droit de compter ces quatre parcelles biscornues comme quatre carrés magiques, quand on calcule l'aire et ma liste de courses. D'accord ?",
+    c2_e_tp1: "Et voilà — l'aire de chaque morceau du champ, calculée à partir de leurs deux côtés : à droite les {n} carrés magiques entiers, puis la bande avec ses quatre parcelles biscornues qui font 100 centièmes de carré magique, et les {r} centièmes qui restent, puis la bande du côté et le coin.",
+    c2_e_tp3: "Maintenant, la règle de Marimon nous dit que, pour planter un arbre, on se fiche de savoir si cent centièmes forment un carré ou pas — il faut seulement que la surface soit d'un seul tenant, quelle que soit la forme. Donc on a le droit de compter les quatre parcelles biscornues comme quatre carrés magiques, quand on calcule l'aire et qu'on décide combien de graines d'arbres acheter. D'accord ?",
 
     c2_e_rg1: "Alors mettons-les où elles doivent aller : les quatre parcelles avec les carrés magiques entiers, et les restes ensemble.",
     c2_e_rg_qa: "Donc combien de blocs ayant l'aire d'un carré magique est-ce que ce champ contient en tout ? <strong>{a}&nbsp;+&nbsp;{b}&nbsp;=&nbsp;?</strong>",
@@ -6300,8 +6298,7 @@ const chapterSteps = [
     ], 22));
     storyHTML(`
       <div class="speaker">Eliel</div>
-      <p>${t('c2_e_tp1')}</p>
-      <p style="margin-top:8px">${t('c2_e_tp2', { n: MSROWS * MSCOLS, r: DBANDLEFT })}</p>
+      <p>${t('c2_e_tp1', { n: MSROWS * MSCOLS, r: DBANDLEFT })}</p>
       <p style="margin-top:10px">${t('c2_e_tp3')}</p>
     `);
     addButton(t('c2_btn_yes_plain'), nextStep);
