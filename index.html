@@ -393,8 +393,14 @@
     // Propagate language into EVERY playable quest link, so a shared /chapterN/ link stays in
     // language. Driven off each card's own href rather than a hardcoded id, so unlocking the
     // next chapter is one card and no script change.
+    //
+    // The hrefs are bare directories ("chapter2/") because that is the clean URL to share, and a
+    // web server resolves it to that folder's index.html. Opened from DISK there is no server to
+    // do that, and the browser offers a file picker instead — so on file:// the link is spelled
+    // out in full. Dev affordance only: over http(s) the pretty URL is what gets used.
+    const local = location.protocol === 'file:';
     document.querySelectorAll('a.card.playable[href]').forEach(link => {
-      const base = link.getAttribute('href').split('?')[0];
+      const base = link.getAttribute('href').split('?')[0] + (local ? 'index.html' : '');
       link.setAttribute('href', LANG === 'en' ? base : base + '?lang=' + LANG);
     });
     // Toggle active state
