@@ -740,6 +740,11 @@ registerStrings({
     c2_f_pw_nocarry: "{a} and {b} — and fewer than ten tenths, so there is nothing to pack away this time.",
     c2_f_pw_carry1: "{a}. More than ten, so there are whole magic lengths hiding in there.",
     c2_f_pw_carry2: "Ten tenths make one whole. Group them up.",
+    c2_f_pw_q_made: "How many whole magic lengths did that make?",
+    c2_f_pw_h_made: "Count the orange ones on the row.",
+    c2_f_pw_made_lbl: "{n} whole magic lengths",
+    c2_f_pw_made_lbl1: "1 whole magic length",
+    c2_f_pw_made_ok: "There they are, lifted clear of the tenths.",
     c2_f_pw_q_rest: "How many tenths are still loose?",
     c2_f_pw_h_rest: "{ct} tenths, less the ones that went into whole magic lengths.",
     c2_f_pw_carry_ok: "Packed away — you can see them up there in orange. {rest} tenths stayed loose.",
@@ -1405,6 +1410,11 @@ registerStrings({
     c2_f_pw_nocarry: "{a} et {b} — et moins de dix dixièmes, donc il n'y a rien à ranger cette fois.",
     c2_f_pw_carry1: "{a}. Plus de dix, donc il y a des longueurs magiques entières qui se cachent là-dedans.",
     c2_f_pw_carry2: "Dix dixièmes font une entière. Regroupe-les.",
+    c2_f_pw_q_made: "Combien de longueurs magiques entières est-ce que ça fait ?",
+    c2_f_pw_h_made: "Compte les oranges sur la rangée.",
+    c2_f_pw_made_lbl: "{n} longueurs magiques entières",
+    c2_f_pw_made_lbl1: "1 longueur magique entière",
+    c2_f_pw_made_ok: "Et voilà ce qui est sorti des dixièmes.",
     c2_f_pw_q_rest: "Combien de dixièmes restent en vrac ?",
     c2_f_pw_h_rest: "{ct} dixièmes, moins ceux qui sont partis dans les longueurs magiques entières.",
     c2_f_pw_carry_ok: "Rangés — tu les vois là-haut en orange. Il est resté {rest} dixièmes en vrac.",
@@ -3343,11 +3353,19 @@ function carryRow(onFull, opts) {
   ref.innerHTML = lengthSVG(true, CKEEP * CPX, null, null, CORANGE);
   // "where it stops" has to be a place on the row below, not something the child holds in
   // their eye across 40px of white space.
-  add(`position:absolute; left:${x0 + CKEEP * CPX - 1}px; top:34px; width:0; height:36px;` +
+  const dash = add(`position:absolute; left:${x0 + CKEEP * CPX - 1}px; top:34px; width:0; height:36px;` +
     'border-left:2px dashed #8b5e3c; opacity:.55;');
 
   add(`position:absolute; left:${x0}px; top:70px; box-sizing:border-box;` +
     `width:${total}px; height:${HIT}px; border:2px dashed #c9b88b; border-radius:3px;`);
+
+  // A fused magic length keeps its ten tenth-marks, a shade lighter than the end ticks: the
+  // same ten pieces of wire are still there, they are simply counted as one now. Shared with
+  // harvest(), which lifts those very bars out.
+  let inner = '';
+  for (let i = 1; i < CKEEP; i++) inner +=
+    `<line x1="${i * CPX}" y1="${HALF - 4}" x2="${i * CPX}" y2="${HALF + 4}" ` +
+    'stroke="#f0c9a0" stroke-width="2"/>';
 
   let laid = 0;
   const pieces = [];
@@ -3401,12 +3419,29 @@ function carryRow(onFull, opts) {
     // looks like ten tenths going in and something else coming out. The internal divisions
     // are drawn a shade lighter than the end ticks, so the bar still reads as ONE piece with
     // ten parts rather than as ten pieces again.
-    const inner = [];
-    for (let i = 1; i < CKEEP; i++) inner.push(
-      `<line x1="${i * CPX}" y1="${HALF - 4}" x2="${i * CPX}" y2="${HALF + 4}" ` +
-      'stroke="#f0c9a0" stroke-width="2"/>');
     d.innerHTML = lengthSVG(true, CKEEP * CPX, null, null, CORANGE)
-      .replace('</svg>', inner.join('') + '</svg>');
+      .replace('</svg>', inner + '</svg>');
+  }
+
+  // The magic lengths the regrouping brought OUT, lifted into the reference bar's place.
+  //
+  // That is the right spot for them: the reference has done its job by the time they exist,
+  // and stacking a third orange thing above the row would leave two of them competing for the
+  // same reading. They keep the fused bars' internal tenth marks, because they are those same
+  // bars — nothing is thrown away in a regrouping (Sylvain, on Part C's carry).
+  //
+  // Called only AFTER the child has said how many there are: drawn up front it would be the
+  // answer, and the row below already carries the same information for anyone counting.
+  function harvest(n, label) {
+    [refLab, ref, dash].forEach(el => el.remove());
+    const step = CKEEP * CPX + 14;
+    for (let i = 0; i < n; i++) {
+      const d = add(`position:absolute; left:${x0 + i * step}px; top:24px;`);
+      d.innerHTML = lengthSVG(true, CKEEP * CPX, null, null, CORANGE).replace('</svg>', inner + '</svg>');
+    }
+    const cap = add(`position:absolute; left:${x0}px; top:0; width:${n * step - 14}px;` +
+      `text-align:center; font-family:Georgia,serif; font-size:13px; color:${CORANGE};`);
+    cap.textContent = label;
   }
 
   gameArea.appendChild(box);
@@ -3418,7 +3453,7 @@ function carryRow(onFull, opts) {
   } else {
     wireSupply([{ n: N, len: CPX, kind: 'tenth', capKey: 'c2_c_lbl_tenths', col: CPURPLE }], true);
   }
-  return { fuse };
+  return { fuse: fuse, harvest: harvest };
 }
 
 // ===========================================================================
@@ -4801,11 +4836,23 @@ function fStepsFor(F) {
           addButton(t('c2_btn_group_ten'), () => {
             row.fuse();
             buttonArea.innerHTML = '';
-            askInline(t('c2_f_pw_q_rest', v), CREST, () => {
-              say('Eliel', t('c2_f_pw_carry_ok',
-                fV({ a: oML(CCARRY), b: pT(CREST) })));
-              addButton(t('btn_continue'), finish);
-            }, t('c2_f_pw_h_rest', v));
+            // The magic lengths that came OUT get their own question and their own picture
+            // (Sylvain). The second field brings out two, where every other carry in the
+            // chapter brings out one — so "how many" stops being rhetorical, and the answer is
+            // then lifted clear of the row rather than left to be read off it.
+            askInline(t('c2_f_pw_q_made', v), CCARRY, () => {
+              row.harvest(CCARRY, t(CCARRY === 1 ? 'c2_f_pw_made_lbl1' : 'c2_f_pw_made_lbl',
+                                    { n: CCARRY }));
+              say('Eliel', t('c2_f_pw_made_ok'));
+              addButton(t('btn_continue'), () => {
+                buttonArea.innerHTML = '';
+                askInline(t('c2_f_pw_q_rest', v), CREST, () => {
+                  say('Eliel', t('c2_f_pw_carry_ok',
+                    fV({ a: oML(CCARRY), b: pT(CREST) })));
+                  addButton(t('btn_continue'), finish);
+                }, t('c2_f_pw_h_rest', v));
+              });
+            }, t('c2_f_pw_h_made', v));
           });
         }, t('c2_f_pw_h', { a: 2 * Clong.t, b: 2 * Cshort.t }));
       }, t('c2_f_pw_h', { a: 2 * Clong.w, b: 2 * Cshort.w }));
