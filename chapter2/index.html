@@ -462,7 +462,6 @@ registerStrings({
     // First person plural throughout — the same register as c2_a_weird2 ("OUR magic lengths
     // can't measure it. WE need something smaller"). The child did this work.
     c2_e_back2: "This field's sides were not whole numbers of magic lengths, so we could not count it the way we count an ordinary field. What we did instead was cut it into <strong>four rectangles</strong> — and every single one of those, we already knew how to count.",
-    c2_e_back3: "Here it is again, the way it was before we carved the tree plots out of it.",
 
     // The conversion, printed on the edge it is about. The bottom one is Eliel's worked
     // example and is up from the start; the left one appears only AFTER the child has
@@ -1150,9 +1149,8 @@ registerStrings({
     c2_d_wrap3: "Et pourtant, rien n'a changé. C'est le même champ, exactement aussi grand qu'avant — on l'a simplement mieux rangé. {n} arbres de plus, tirés du même terrain.",
 
     // --- PARTIE E : donner un nom à ce qu'on a fait, et écrire la réponse ---
-    c2_e_back1: "Avant de passer à autre chose, je voudrais qu'on s'arrête un instant sur ce qu'on vient de faire. Ça mérite un nom.",
-    c2_e_back2: "Les côtés de ce champ ne faisaient pas un nombre entier de longueurs magiques, donc on ne pouvait pas le compter comme un champ ordinaire. Ce qu'on a fait à la place, c'est le découper en <strong>quatre rectangles</strong> — et chacun de ces quatre-là, on savait déjà le compter.",
-    c2_e_back3: "Le voilà de nouveau, tel qu'il était avant qu'on y découpe les parcelles d'arbres.",
+    c2_e_back1: "Avant de passer à autre chose, je voudrais qu'on s'arrête un instant sur ce qu'on vient de faire. C'est très intéressant.",
+    c2_e_back2: "Les côtés de ce champ ne faisaient pas un nombre entier de longueurs magiques, donc on ne pouvait pas mesurer son aire comme celle d'un champ ordinaire. À la place, on l'a découpé en <strong>quatre rectangles</strong> dont on savait mesurer l'aire, puis on a additionné le tout.",
 
     c2_e_lbl_2t_eq: "2 dixièmes = {n} longueur magique",
     c2_e_lbl_7t_eq: "7 dixièmes = {n} longueur magique",
@@ -5866,7 +5864,6 @@ const chapterSteps = [
       <div class="speaker">Eliel</div>
       <p>${t('c2_e_back1')}</p>
       <p style="margin-top:8px">${t('c2_e_back2')}</p>
-      <p style="margin-top:8px">${t('c2_e_back3')}</p>
     `);
     splitFieldView({ materialize: true, padL: EPADL, padR: EPADR, brackets: true });
     addButton(t('btn_continue'), nextStep);
