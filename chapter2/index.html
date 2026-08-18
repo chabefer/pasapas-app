@@ -3922,8 +3922,11 @@ function eTerm(key, html, state) {
     : state === 'current'
       ? 'background:#fffdf2; border:2px solid #6b5e4a;'
       : `background:${REGION[key].fill}; border:1px solid rgba(90,80,60,0.45);`;
-  return `<span style="display:inline-block; ${skin} border-radius:5px; padding:1px 7px;` +
-    `white-space:nowrap;">${html}</span>`;
+  // vertical-align:middle, not the default baseline: the chips in a row are now one, two or
+  // three lines tall, and on a baseline they hang off it at different heights with the "+"
+  // signs between them at a fourth. Middle puts every term and every "+" on one level.
+  return `<span style="display:inline-block; vertical-align:middle; ${skin}` +
+    ` border-radius:5px; padding:3px 7px; white-space:nowrap;">${html}</span>`;
 }
 
 // `leftHTML` may be a chain rather than a single expression — eSplitSides keeps the
@@ -3945,6 +3948,20 @@ function eEqLine(leftHTML, termHTML, state) {
   }).join(' &nbsp; ');
   return d;
 }
+
+// A term the child has worked out: the product, then "=" ON ITS OWN LINE, then the value.
+//
+// Beside the number ("= 18") the equals sign sits at the same level as the "+" signs joining
+// the four terms, and the eye reads the whole row as one line of arithmetic. Above it, each
+// chip becomes a small partial computation of its own, which is what it is (Sylvain).
+//
+// Its own line-height: the chain's is 2.2, and three lines of that would be a chip taller than
+// the field above it.
+const eValued = (k, value) =>
+  '<span style="display:inline-block; line-height:1.35; text-align:center;">' +
+  `${eProdHTML(k)}<br>` +
+  '<span style="font-size:14px; color:#8b7355;">=</span><br>' +
+  `<span style="font-size:16px;">${value}</span></span>`;
 
 // One expression in the chain, kept on one line.
 const eExpr = html => `<strong style="white-space:nowrap">${html}</strong>`;
@@ -4050,8 +4067,7 @@ function eTermStage(current, values) {
   gameArea.appendChild(eEqLine(
     eExpr(`${fmtNum(FIELD.L)} × ${fmtNum(FIELD.l)}`) + ' &nbsp;=&nbsp; ' +
     eExpr(`(${fmtNum(EA)} + ${fmtNum(EB)}) × (${fmtNum(EC)} + ${fmtNum(ED)})`),
-    k => eProdHTML(k) + (values[k]
-      ? `<br><span style="font-size:15px">= ${values[k]}</span>` : ''),
+    k => (values[k] ? eValued(k, values[k]) : eProdHTML(k)),
     k => values[k] ? 'done' : (k === current ? 'current' : 'todo')));
 }
 
@@ -6263,7 +6279,7 @@ const chapterSteps = [
     const V = EORDER.reduce((m, k) => (m[k] = eTermValue(k), m), {});
     gameArea.appendChild(eEqLine(
       eExpr(`${fmtNum(FIELD.L)} × ${fmtNum(FIELD.l)}`),
-      k => `${eProdHTML(k)}<br><span style="font-size:15px">= ${V[k]}</span>`));
+      k => eValued(k, V[k])));
     // The field itself, then "=", then the four pieces — the sentence above said "the field
     // on the left", and a picture that does not show it makes the sentence a claim about
     // something absent. Stacked rather than in a row: side by side the whole thing runs past
