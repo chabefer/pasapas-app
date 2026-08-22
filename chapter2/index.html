@@ -185,10 +185,6 @@ registerStrings({
     // --- the transfer: the Chapter 1 shortcuts carry over to the new units, unchanged ---
     c2_ap_tr_1: "And here is something really useful.",
     c2_ap_tr_2: "All the shortcuts we learned for computing areas and perimeters of squares and rectangles with magic lengths and magic squares work <strong>exactly the same</strong> with tenths of a magic length and hundredths of a magic square:",
-    c2_ap_tr_f_area_sq: "<strong>Area of a square</strong> (side s): <strong>s² = s×s</strong>",
-    c2_ap_tr_f_area_rect: "<strong>Area of a rectangle</strong> (sides L and l): <strong>L×l</strong> (or l×L)",
-    c2_ap_tr_f_perim_sq: "<strong>Perimeter of a square</strong>: <strong>4×s</strong>",
-    c2_ap_tr_f_perim_rect: "<strong>Perimeter of a rectangle</strong>: <strong>2×L + 2×l</strong>",
     c2_ap_tr_3: "Measure the sides in magic lengths, and the area comes out in magic squares. Measure the sides in tenths of a magic length instead, and the area comes out in hundredths of a magic square. Nothing else changes.",
     c2_ap_tr_4: "That is exactly what we just did: this square's side is 10 tenths, so its area is 10 × 10 = 100 hundredths. Pretty nice, no?",
     c2_ap_tr_cap: "side: 10 tenths · area: 10 × 10 = 100 hundredths",
@@ -458,7 +454,7 @@ registerStrings({
     // --- PART E: name what we did, and write the answer ---
     // Late, like Chapter 1's formal definitions: the child has now cut a rectangle's sides
     // and multiplied the pieces three times over, so the name lands on something they own.
-    c2_e_back1: "Before we finish, I want to look at what we just did. It deserves a name.",
+    c2_e_back1: "Before we move on, I want to look at what we just did. It deserves a name.",
     // First person plural throughout — the same register as c2_a_weird2 ("OUR magic lengths
     // can't measure it. WE need something smaller"). The child did this work.
     c2_e_back2: "This field's sides were not whole numbers of magic lengths, so we could not count it the way we count an ordinary field. What we did instead was cut it into <strong>four rectangles</strong> — and every single one of those, we already knew how to count.",
@@ -899,10 +895,6 @@ registerStrings({
     // --- le transfert : les raccourcis du chapitre 1 marchent tels quels avec les nouvelles unités ---
     c2_ap_tr_1: "Et voilà quelque chose de vraiment super utile.",
     c2_ap_tr_2: "Tous les raccourcis qu'on a appris pour calculer les aires et les périmètres des carrés et des rectangles avec les longueurs magiques et les carrés magiques marchent <strong>exactement pareil</strong> avec les dixièmes de longueur magique et les centièmes de carré magique :",
-    c2_ap_tr_f_area_sq: "<strong>Aire d'un carré</strong> (côté s) : <strong>s² = s×s</strong>",
-    c2_ap_tr_f_area_rect: "<strong>Aire d'un rectangle</strong> (côtés L et l) : <strong>L×l</strong> (ou l×L)",
-    c2_ap_tr_f_perim_sq: "<strong>Périmètre d'un carré</strong> : <strong>4×s</strong>",
-    c2_ap_tr_f_perim_rect: "<strong>Périmètre d'un rectangle</strong> : <strong>2×L + 2×l</strong>",
     c2_ap_tr_3: "Mesure les côtés en longueurs magiques, et l'aire sort en carrés magiques. Mesure les côtés en dixièmes de longueur magique, et l'aire sort en centièmes de carré magique. Rien d'autre ne change.",
     c2_ap_tr_4: "C'est exactement ce qu'on vient de faire : le côté de ce carré fait 10 dixièmes, donc son aire fait 10 × 10 = 100 centièmes. Plutôt chouette, non ?",
     c2_ap_tr_cap: "côté : 10 dixièmes · aire : 10 × 10 = 100 centièmes",
@@ -1450,7 +1442,7 @@ registerStrings({
 });
 
 const PX = 46;              // screen pixels per magic length
-const HIT = 20, HALF = 10;  // thickness of a drawn magic length (matches Chapter 1)
+
 
 // Hatched ground: used for the sliver of field the lengths don't reach, for the excess
 // area an overshoot would wrongly claim, and for the zoomed sliver in Part A2 — one
@@ -1459,45 +1451,9 @@ const HATCH =
   'background:repeating-linear-gradient(45deg,rgba(232,163,61,.55),rgba(232,163,61,.55) 4px,'
   + 'rgba(255,246,224,.55) 4px,rgba(255,246,224,.55) 9px);';
 
-// One laid length, drawn exactly like Chapter 1's covered perimeter segments.
-//
-// End ticks sit at 0 and `len` — NOT inset. Each is half-clipped by the SVG edge, so a
-// piece's far half-tick and its neighbour's near half-tick combine into one clean full
-// tick. Insetting them (even by 1.5px) leaves a gap at every join and the row looks ragged.
-//
-// Green over [gs, ge], red outside it. Which end goes red depends on the direction of
-// travel: the bottom side is laid left→right so an overshoot is at the far end, while the
-// left side is laid BOTTOM→UP (from the bottom corner, as Chapter 1 does) so its overshoot
-// is at the near end.
-//
-// Used at two scales: on the field a magic length is PX, and in the zoomed views of Part A2
-// a TENTH is drawn at PX — i.e. 10× magnification, which is what makes tenths visible at all.
-// `th` (tick half-length) defaults to Chapter 1's 6 and should stay there for anything laid on
-// a field. It exists for the SUPPLY TRAY: a tick is 12px across, so on a piece shorter than
-// that the ticks outrun the body and the glyph reads perpendicular to its own axis — a tray
-// tenth for the left side looked like a horizontal dumbbell. See supplyGroup().
-function lengthSVG(horiz, len, gs, ge, col, th) {
-  const g = col || '#5a8f3d', r = '#c0392b';
-  if (gs == null) gs = 0;
-  if (ge == null) ge = len;
-  if (th == null) th = 6;
-  const seg = (a, b, c) => horiz
-    ? `<line x1="${a}" y1="${HALF}" x2="${b}" y2="${HALF}" stroke="${c}" stroke-width="7" stroke-linecap="butt"/>`
-    : `<line x1="${HALF}" y1="${a}" x2="${HALF}" y2="${b}" stroke="${c}" stroke-width="7" stroke-linecap="butt"/>`;
-  const tick = (p, c) => horiz
-    ? `<line x1="${p}" y1="${HALF - th}" x2="${p}" y2="${HALF + th}" stroke="${c}" stroke-width="2.5"/>`
-    : `<line x1="${HALF - th}" y1="${p}" x2="${HALF + th}" y2="${p}" stroke="${c}" stroke-width="2.5"/>`;
-  const body =
-    (gs > 0 ? seg(0, gs, r) : '') + seg(gs, ge, g) + (ge < len ? seg(ge, len, r) : '') +
-    tick(0, gs > 0 ? r : g) + tick(len, ge < len ? r : g);
-  // display:block is load-bearing. An inline <svg> sits on a TEXT BASELINE, so a short one
-  // floats down inside its line box while a tall one lands at the top — a 4.6px tenth ended
-  // up 10.4px below a 46px whole length, opening a visible gap at the end of a measured side.
-  // Blocks have no baseline, so every piece lands exactly where it is positioned.
-  const st = ' style="display:block"';
-  return horiz ? `<svg width="${len}" height="${HIT}"${st}>${body}</svg>`
-               : `<svg width="${HIT}" height="${len}"${st}>${body}</svg>`;
-}
+// lengthSVG(), seedDot() and tenthGrid() moved to pap-core.js on 2026-08-18, when Chapter 3
+// became their third caller. Nothing about them was chapter-specific; PX stays here because
+// pixels-per-magic-length is this chapter's geometry, not shared vocabulary.
 
 // The field and its stage. Identical on every Part A screen so the field never moves as
 // the child goes from step to step.
@@ -2029,65 +1985,6 @@ function coveredField() {
 // wouldn't fit beside its own explanation.
 const SQ = 300, SQC = SQ / 10;
 
-// The seed mark, exactly Chapter 1's: a centred '·'. One per square, whatever the square's
-// size — which is the whole point of the comparison below. The land changes size; the seed
-// does not, and each square still feeds exactly one of them.
-function seedDot(px) {
-  const d = document.createElement('div');
-  d.textContent = '·';
-  d.style.cssText = 'position:absolute; inset:0; display:flex; align-items:center; justify-content:center;' +
-    `font-size:${px}px; color:#555; pointer-events:none;`;
-  return d;
-}
-
-// ---------------------------------------------------------------------------
-// THE TENTH-GRID PRIMITIVE — `buildDecimalField` from CHAPTER2_PLAN.md §4, extracted
-// here on its SECOND use rather than designed up front. That is the discipline A2 and A′
-// set: build the concrete thing, and generalise only once a second site can argue with
-// the design. A′ wanted one magic square ruled into its hundred flower squares; Part B
-// wants the same picture at four sizes, four colours and two scales, none of them square.
-// What both actually want is: a rectangle whose sides are given in TENTHS, ruled into
-// flower squares, with the magic-square boundaries drawn heavier than the flower ones.
-//
-// The rules are repeating gradients, not child divs. The top band alone is 60 × 7 — 420
-// cells and 69 rules — which is two background layers here and several hundred DOM nodes
-// the other way, on a device that is meant to be a tablet.
-//   wT, hT : width and height in TENTHS
-//   px     : screen pixels per tenth (10 on the zoomed strips, PX/10 on the field itself)
-//   opts   : {fill, border, grid:false to drop the tenth rules, magic:true for the
-//            heavier every-tenth-tenth lines that make whole magic squares visible}
-// ---------------------------------------------------------------------------
-function tenthGrid(wT, hT, px, opts) {
-  const o = opts || {};
-  const fine = o.fine || '#c9c2ae', bold = o.bold || 'rgba(58,58,58,0.80)';
-  const layers = [], sizes = [];
-  const add = (img, size) => { layers.push(img); sizes.push(size || 'auto'); };
-  // One seed per flower square, when asked for. A radial tile exactly one cell across puts
-  // its dot at the cell's centre for free, since the tiling starts at 0 like the rules do —
-  // 494 seeds for the price of one background layer. Declared first so the dots sit ON TOP
-  // of the rules (CSS paints the first background-image layer uppermost).
-  if (o.seeds) {
-    const r = Math.max(0.9, px * 0.13);
-    add(`radial-gradient(circle, #555 0 ${r}px, transparent ${r + 0.6}px)`, `${px}px ${px}px`);
-  }
-  // The magic-square rules go before the fine ones so they paint over them — the child is
-  // asked to count groups of ten off them, and a heavy line half-hidden is no good.
-  if (o.magic) {
-    add(`repeating-linear-gradient(to right, ${bold} 0 2px, transparent 2px ${10 * px}px)`);
-    add(`repeating-linear-gradient(to bottom, ${bold} 0 2px, transparent 2px ${10 * px}px)`);
-  }
-  if (o.grid !== false) {
-    add(`repeating-linear-gradient(to right, ${fine} 0 1px, transparent 1px ${px}px)`);
-    add(`repeating-linear-gradient(to bottom, ${fine} 0 1px, transparent 1px ${px}px)`);
-  }
-  const el = document.createElement('div');
-  el.style.cssText =
-    `position:relative; box-sizing:border-box; flex:none;` +
-    `width:${wT * px}px; height:${hT * px}px; background-color:${o.fill || '#fffef5'};` +
-    (layers.length ? `background-image:${layers.join(',')}; background-size:${sizes.join(',')};` : '') +
-    `border:${o.border || '2px solid #3a3a3a'};`;
-  return el;
-}
 
 // A block of whole magic squares in Chapter 1's colours, with or without their seeds.
 // Hand-built rather than `showFilledField`, whose `.field-cell.filled::after` always draws
@@ -5322,10 +5219,10 @@ const chapterSteps = [
       <p>${t('c2_ap_tr_1')}</p>
       <p style="margin-top:8px">${t('c2_ap_tr_2')}</p>
       <ul style="margin:8px 0 0 20px; line-height:1.8">
-        <li>${t('c2_ap_tr_f_area_sq')}</li>
-        <li>${t('c2_ap_tr_f_area_rect')}</li>
-        <li>${t('c2_ap_tr_f_perim_sq')}</li>
-        <li>${t('c2_ap_tr_f_perim_rect')}</li>
+        <li>${t('fs_f_area_sq')}</li>
+        <li>${t('fs_f_area_rect')}</li>
+        <li>${t('fs_f_perim_sq')}</li>
+        <li>${t('fs_f_perim_rect')}</li>
       </ul>
       <p style="margin-top:10px">${t('c2_ap_tr_3')}</p>
       <p style="margin-top:8px">${t('c2_ap_tr_4')}</p>

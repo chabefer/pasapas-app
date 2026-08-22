@@ -110,6 +110,13 @@ const CORE_STRINGS = {
     supply_choose_blocks: "Choose your blocks and drag them onto the field:",
     fb_not_quite_times: "Not quite — “4 TIMES {side}”!",
     psp_lets_verify: "Let's verify!",
+    // Chapter 1's four formulas, promoted to the core on their THIRD chapter of use.
+    // Ch2 carried a byte-identical copy as c2_ap_tr_f_* (flagged at the time as a copy
+    // not to be made twice); Ch3 recalls them again. One home, three callers.
+    fs_f_area_sq: "<strong>Area of a square</strong> (side s): <strong>s² = s×s</strong>",
+    fs_f_area_rect: "<strong>Area of a rectangle</strong> (sides L and l): <strong>L×l</strong> (or l×L)",
+    fs_f_perim_sq: "<strong>Perimeter of a square</strong>: <strong>4×s</strong>",
+    fs_f_perim_rect: "<strong>Perimeter of a rectangle</strong>: <strong>2×L + 2×l</strong>",
   },
   fr: {
     fb_wonderful: "Bravo !",
@@ -187,6 +194,13 @@ const CORE_STRINGS = {
     supply_choose_blocks: "Choisis tes blocs et fais-les glisser sur le champ :",
     fb_not_quite_times: "Pas tout à fait — «&nbsp;4 FOIS {side}&nbsp;» !",
     psp_lets_verify: "Vérifions !",
+    // Chapter 1's four formulas, promoted to the core on their THIRD chapter of use.
+    // Ch2 carried a byte-identical copy as c2_ap_tr_f_* (flagged at the time as a copy
+    // not to be made twice); Ch3 recalls them again. One home, three callers.
+    fs_f_area_sq: "<strong>Aire d'un carré</strong> (côté s) : <strong>s² = s×s</strong>",
+    fs_f_area_rect: "<strong>Aire d'un rectangle</strong> (côtés L et l) : <strong>L×l</strong> (ou l×L)",
+    fs_f_perim_sq: "<strong>Périmètre d'un carré</strong> : <strong>4×s</strong>",
+    fs_f_perim_rect: "<strong>Périmètre d'un rectangle</strong> : <strong>2×L + 2×l</strong>",
   },
 };
 
@@ -1226,10 +1240,14 @@ function smartAddition(addSteps, persistentSides, valueLabel, onDone, persistent
     promptDiv.textContent = step.prompt;
     gameArea.appendChild(promptDiv);
 
+    // step.opts is passed straight through to askNumber — Chapter 3's wire total sums
+    // numbers with tenths in them, and without {decimal:true} parseInt eats the dot.
+    // Purely additive: a step that does not set it behaves exactly as before.
     askNumber('', step.pairResult, () => {
       stepIdx++;
       showStep();
-    }, `${step.numbers[step.pairIndices[0]]} + ${step.numbers[step.pairIndices[1]]} = ?`);
+    }, `${step.numbers[step.pairIndices[0]]} + ${step.numbers[step.pairIndices[1]]} = ?`,
+      step.opts);
   }
 
   showStep();
@@ -2663,6 +2681,117 @@ function buildGroupedFieldsDisplay(items, valueLabel, nestLevel, maxDepth) {
 // ============================================================
 // BOOT — chapters call startGame(steps) as their last statement
 // ============================================================
+
+// ===========================================================================
+// DRAWN GROUND — promoted from Chapter 2 on 2026-08-18, when Chapter 3 became
+// their third caller. `tenthGrid` is CHAPTER2_PLAN.md §4's `buildDecimalField`;
+// `lengthSVG` draws one laid magic length; `seedDot` is Chapter 1's seed mark.
+// All three are pure: they build an element (or a string) and touch nothing else,
+// which is why moving them cannot change a chapter's behaviour. Chapters keep
+// their own PX (pixels per magic length) — that is geometry, not vocabulary.
+// ===========================================================================
+
+const HIT = 20, HALF = 10;  // thickness of a drawn magic length (matches Chapter 1)
+
+// One laid length, drawn exactly like Chapter 1's covered perimeter segments.
+//
+// End ticks sit at 0 and `len` — NOT inset. Each is half-clipped by the SVG edge, so a
+// piece's far half-tick and its neighbour's near half-tick combine into one clean full
+// tick. Insetting them (even by 1.5px) leaves a gap at every join and the row looks ragged.
+//
+// Green over [gs, ge], red outside it. Which end goes red depends on the direction of
+// travel: the bottom side is laid left→right so an overshoot is at the far end, while the
+// left side is laid BOTTOM→UP (from the bottom corner, as Chapter 1 does) so its overshoot
+// is at the near end.
+//
+// Used at two scales: on the field a magic length is PX, and in the zoomed views of Part A2
+// a TENTH is drawn at PX — i.e. 10× magnification, which is what makes tenths visible at all.
+// `th` (tick half-length) defaults to Chapter 1's 6 and should stay there for anything laid on
+// a field. It exists for the SUPPLY TRAY: a tick is 12px across, so on a piece shorter than
+// that the ticks outrun the body and the glyph reads perpendicular to its own axis — a tray
+// tenth for the left side looked like a horizontal dumbbell. See supplyGroup().
+function lengthSVG(horiz, len, gs, ge, col, th) {
+  const g = col || '#5a8f3d', r = '#c0392b';
+  if (gs == null) gs = 0;
+  if (ge == null) ge = len;
+  if (th == null) th = 6;
+  const seg = (a, b, c) => horiz
+    ? `<line x1="${a}" y1="${HALF}" x2="${b}" y2="${HALF}" stroke="${c}" stroke-width="7" stroke-linecap="butt"/>`
+    : `<line x1="${HALF}" y1="${a}" x2="${HALF}" y2="${b}" stroke="${c}" stroke-width="7" stroke-linecap="butt"/>`;
+  const tick = (p, c) => horiz
+    ? `<line x1="${p}" y1="${HALF - th}" x2="${p}" y2="${HALF + th}" stroke="${c}" stroke-width="2.5"/>`
+    : `<line x1="${HALF - th}" y1="${p}" x2="${HALF + th}" y2="${p}" stroke="${c}" stroke-width="2.5"/>`;
+  const body =
+    (gs > 0 ? seg(0, gs, r) : '') + seg(gs, ge, g) + (ge < len ? seg(ge, len, r) : '') +
+    tick(0, gs > 0 ? r : g) + tick(len, ge < len ? r : g);
+  // display:block is load-bearing. An inline <svg> sits on a TEXT BASELINE, so a short one
+  // floats down inside its line box while a tall one lands at the top — a 4.6px tenth ended
+  // up 10.4px below a 46px whole length, opening a visible gap at the end of a measured side.
+  // Blocks have no baseline, so every piece lands exactly where it is positioned.
+  const st = ' style="display:block"';
+  return horiz ? `<svg width="${len}" height="${HIT}"${st}>${body}</svg>`
+               : `<svg width="${HIT}" height="${len}"${st}>${body}</svg>`;
+}
+
+// The seed mark, exactly Chapter 1's: a centred '·'. One per square, whatever the square's
+// size — which is the whole point of the comparison below. The land changes size; the seed
+// does not, and each square still feeds exactly one of them.
+function seedDot(px) {
+  const d = document.createElement('div');
+  d.textContent = '·';
+  d.style.cssText = 'position:absolute; inset:0; display:flex; align-items:center; justify-content:center;' +
+    `font-size:${px}px; color:#555; pointer-events:none;`;
+  return d;
+}
+
+// ---------------------------------------------------------------------------
+// THE TENTH-GRID PRIMITIVE — `buildDecimalField` from CHAPTER2_PLAN.md §4, extracted
+// here on its SECOND use rather than designed up front. That is the discipline A2 and A′
+// set: build the concrete thing, and generalise only once a second site can argue with
+// the design. A′ wanted one magic square ruled into its hundred flower squares; Part B
+// wants the same picture at four sizes, four colours and two scales, none of them square.
+// What both actually want is: a rectangle whose sides are given in TENTHS, ruled into
+// flower squares, with the magic-square boundaries drawn heavier than the flower ones.
+//
+// The rules are repeating gradients, not child divs. The top band alone is 60 × 7 — 420
+// cells and 69 rules — which is two background layers here and several hundred DOM nodes
+// the other way, on a device that is meant to be a tablet.
+//   wT, hT : width and height in TENTHS
+//   px     : screen pixels per tenth (10 on the zoomed strips, PX/10 on the field itself)
+//   opts   : {fill, border, grid:false to drop the tenth rules, magic:true for the
+//            heavier every-tenth-tenth lines that make whole magic squares visible}
+// ---------------------------------------------------------------------------
+function tenthGrid(wT, hT, px, opts) {
+  const o = opts || {};
+  const fine = o.fine || '#c9c2ae', bold = o.bold || 'rgba(58,58,58,0.80)';
+  const layers = [], sizes = [];
+  const add = (img, size) => { layers.push(img); sizes.push(size || 'auto'); };
+  // One seed per flower square, when asked for. A radial tile exactly one cell across puts
+  // its dot at the cell's centre for free, since the tiling starts at 0 like the rules do —
+  // 494 seeds for the price of one background layer. Declared first so the dots sit ON TOP
+  // of the rules (CSS paints the first background-image layer uppermost).
+  if (o.seeds) {
+    const r = Math.max(0.9, px * 0.13);
+    add(`radial-gradient(circle, #555 0 ${r}px, transparent ${r + 0.6}px)`, `${px}px ${px}px`);
+  }
+  // The magic-square rules go before the fine ones so they paint over them — the child is
+  // asked to count groups of ten off them, and a heavy line half-hidden is no good.
+  if (o.magic) {
+    add(`repeating-linear-gradient(to right, ${bold} 0 2px, transparent 2px ${10 * px}px)`);
+    add(`repeating-linear-gradient(to bottom, ${bold} 0 2px, transparent 2px ${10 * px}px)`);
+  }
+  if (o.grid !== false) {
+    add(`repeating-linear-gradient(to right, ${fine} 0 1px, transparent 1px ${px}px)`);
+    add(`repeating-linear-gradient(to bottom, ${fine} 0 1px, transparent 1px ${px}px)`);
+  }
+  const el = document.createElement('div');
+  el.style.cssText =
+    `position:relative; box-sizing:border-box; flex:none;` +
+    `width:${wT * px}px; height:${hT * px}px; background-color:${o.fill || '#fffef5'};` +
+    (layers.length ? `background-image:${layers.join(',')}; background-size:${sizes.join(',')};` : '') +
+    `border:${o.border || '2px solid #3a3a3a'};`;
+  return el;
+}
 
 function nextStep() {
   currentStep++;
