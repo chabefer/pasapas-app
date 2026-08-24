@@ -85,7 +85,7 @@ registerStrings({
     // -- the pause, and the name ----------------------------------------
     c3_a_root1: "Let’s pause a moment. What we just did — take the area of a square field, let’s call it <strong>a</strong>, and find the length of its side, let’s call it <strong>s</strong> — has a name.",
     c3_a_root2: "We say that <strong>s</strong> is the <strong>square root</strong> of <strong>a</strong>, and we write it {sqrt_a}.",
-    c3_a_root3: "And now you know why it is called a <em>root</em>: it is the length of the side that lies at the root of a square field of area <strong>a</strong>. Everything about the field grows out of it.",
+    c3_a_root3: "And now you know why it is called a <em>root</em>: it is the length of the side that lies at the <strong>root</strong> of a square field of area <strong>a</strong>. Everything about the field grows out of it.",
     c3_a_root4: "Let’s see if we can find the square root of our other fields.",
 
     // ---- Part A’: measuring, three times over, and it never finishes ----
@@ -256,8 +256,8 @@ registerStrings({
     c3_e_cor1: "The corner is a little square, <strong>a quarter</strong> of a magic length on each side. Here is how many of them fit inside one magic square:",
     c3_e_cor_q: "Four rows of four. How many little corners fit in one magic square?",
     c3_e_cor_hint: "4 TIMES 4.",
-    c3_e_cor2: "Sixteen. So our corner is <strong>one sixteenth</strong> of a magic square — and {atil}, the area our answer gives, comes to <strong>{a} magic squares and one sixteenth</strong>. A whisker more than the field really holds.",
-    c3_e_cor3: "And look what that whisker <em>is</em>. It is a corner — though not the one we crossed out. Forgetting that one meant the strips had to cover the magic square on their own, so {dtil} came out a touch bigger than the true {d} — and a strip a touch wider leaves a corner of its own behind. That corner is the whisker. We said we would come back and see what forgetting cost us, and this is the bill.",
+    c3_e_cor2: "Sixteen. So our corner is <strong>one sixteenth</strong> of a magic square — and {atil}, the area our answer gives, comes to <strong>{a} magic squares and one sixteenth</strong>. One sixteenth more than the field really holds.",
+    c3_e_cor3: "And look what that sixteenth <em>is</em>. It is a corner — though not the one we crossed out. Forgetting that one meant the strips had to cover the magic square on their own, so {dtil} came out a touch bigger than the true {d} — and a strip a touch wider leaves a corner of its own behind. That corner is the sixteenth. We said we would come back and see what forgetting cost us, and this is the bill.",
 
     c3_e_16_1: "But hold on. <strong>One sixteenth</strong> of a magic square — how much is that, really? We know how to count ground in <strong>flower squares</strong>: those little hundredths from our last adventure, a hundred of them to one magic square. Here they all are.",
     c3_e_16_btn: "Let’s start cutting!",
@@ -304,8 +304,8 @@ registerStrings({
     c3_e_end_next: "There are {n} more fields waiting.",
     c3_e_st1: "Let’s stop a minute and take stock of what we have just done, because it is quite something.",
     c3_e_st2: "Any time you have a square field whose <strong>area</strong> you know — call it {a} — but whose <strong>side</strong> you do not, and that side is {sqa}, you can now get very close to it by computing {approx}. Here is the whole thing in one line:",
-    c3_e_st3: "{aA} is how many <strong>whole magic squares</strong> you can fit inside {a}, and {sA} is the side of a square of that area — {rootA}, which you know on sight, because {aA} is one of the square numbers off Chapter 1’s table. And {rest} is the ground left over — and there it is on the right, laid out flat.",
-    c3_e_st4: "That last piece is our {d}. The leftover ground has an area of {rest}, and it is <strong>two</strong> strips, each {sA} long — plus that little square in the corner. We throw the corner away and let the two strips be a whisker wider to make up for it, and that width is exactly what {d} is: {twice}. So to find it we do what we did before — share the leftover ground into {k} equal pieces.",
+    c3_e_st3: "{aA} is how many <strong>whole magic squares</strong> you can fit inside {a}, and {sA} is the side of a square of that area — {rootA}, which you know on sight, because {aA} is one of the square numbers off Chapter 1’s table.",
+    c3_e_st4: "Our approximation of {roota}, {s1}, starts from {s0eq} and adds our {d} to it — and we work it out by dividing the ground that is left, {rest}, into as many pieces as there are magic lengths in the two strips of height {d} laid end to end (and there are {k} of them). The {bar} sign says just that: divide the number above the bar (we call it the numerator) into as many pieces as the number below it asks for (we call it the denominator). Do not be too impressed by this formula that looks so complicated. We are going to practise using it plenty of times, do not you worry.",
     c3_e_st5: "Let’s see how the trick does on the other fields.",
     c3_f_intro: "Twelve fields burned. Three of them you could name on sight, one we have just fought our way through — and these {n} are next. Same method every time, and you are running it now.",
     c3_f_btn: "Let’s go!",
@@ -443,8 +443,8 @@ registerStrings({
     c3_g_str_ok: "{eq}. So the block and the two strips together are exactly the field — which is no accident at all: that is precisely what we built {dtil} to make true. Those three pieces <strong>are</strong> Marimon’s ground, all of it.",
     c3_g_cor_q: "Which leaves the little corner. How big is that one? {eq}",
     c3_g_cor_hint: "A square of side {d}.",
-    c3_g_cor1: "A <strong>whole magic square</strong>. And there it sits, in the corner — ground our answer claims that the field has not got. This is what crossing out that little corner cost us: the strips had to grow a bit to cover it, and grown strips leave a bigger corner of their own behind.",
-    c3_g_cor2: "So our answer is claiming {sum} magic squares, and the field holds {a}. We are out by a whole magic square, and this corner is it. On the field holding 5 the same corner came to a sixteenth, and it truly did not matter. Here it is a whole one, out of {a}.",
+    c3_g_cor1: "A <strong>whole magic square</strong>. And there it sits, in the corner — ground our approximation invented, that the field has not got. This is what it cost us to put {dtil} in place of {d} so as to cover the little square {dsq} we ignored: the strips had to grow a bit to cover it, and grown strips leave another corner of their own behind, of area {dtsq}, a little bigger.",
+    c3_g_cor2: "Our approximation of {rt}, {s1}, makes a square whose area is {sum} magic squares, where the true square holds {a}. We are out by a whole magic square — the {dtsq} corner we have just worked out. On the field holding 5 the same corner came to a sixteenth of a magic square, and that mattered far less. Here it is a whole one, out of {a}.",
     c3_g_e1: "Now this one, and you know the way by now: the field holding {a}, our answer {stil}, coming apart into {split}. Same four pieces, same four colours.",
     c3_g_e_end: "{sum} magic squares claimed, and the field holds {a}. A whole magic square too much, a second time — and again it is exactly the corner. So these two, {r1} and {r2}, are the two answers I would not want to build a fence on.",
 
@@ -470,7 +470,7 @@ registerStrings({
     c3_g_m_hint: "The ones whose side you already knew, right at the start.",
 
     c3_g_m3: "Three of them: the fields holding 1, 4 and 9. There was never anything left over on those, so there was never a corner to throw away — and their sides are not <strong>about</strong> anything at all. They are exact.",
-    c3_g_m_q2: "And now the other end. Two fields have a bigger corner than any of the others, and they are the same size as each other. Tell me the smaller of their two areas first.",
+    c3_g_m_q2: "And now the other end. Two fields have a bigger corner than any of the others. Tell me the smaller of their two areas first.",
     c3_g_m_h2: "The two biggest orange corners on the board. Take the smaller field of the two.",
     c3_g_m_ok2: "{r}, yes. And the other one?",
     c3_g_m_q3: "Tell me its area too.",
@@ -486,8 +486,8 @@ registerStrings({
 
     btn_play_again: "Play again",
 
-    c3_h_in1: "Here is the {eq} field as it really is, and drawn round it, the square our answer describes. They share their bottom-left corner — and between the two edges lies a band of ground. That band is our mistake: ground our answer claims and the field has not got.",
-    c3_h_in1b: "Here is the field as it really is, and drawn round it, the square our answer describes. They share their bottom-left corner — and between the two edges lies a band of ground. That band is our mistake: ground our answer claims and the field has not got.",
+    c3_h_in1: "Here is the {eq} field as it really is, and drawn round it, the square our answer describes. They share their bottom-left corner — and between the two edges lies a band of ground. That band is our mistake: area our approximation of {d} by {dtil} has added, and that the real field has not got.",
+    c3_h_in1b: "Here is the field as it really is, and drawn round it, the square our answer describes. They share their bottom-left corner — and between the two edges lies a band of ground. That band is our mistake: area our approximation of {d} by {dtil} has added, and that the real field has not got.",
 
     c3_h_in2: "So the true side {ss} is a little shorter than our {stil}. Let us call the difference {e} — {eq} — and there it is on the right of the picture, the width of that band. If we could work out {e}, we could shave it off {s1} and have a much better answer for {ss}.",
 
@@ -559,7 +559,7 @@ registerStrings({
     c3_h_q1_lead: "And here is what makes the whole thing possible: we can work out exactly how big that band is, without measuring a thing. Our wrong square has a side of {stil}.",
     c3_h_q1: "So what is its area? {eq}",
     c3_h_q1_hint: "A square of side {g}.",
-    c3_h_q2_lead: "{eq} magic squares — that is what our answer claims. And Marimon’s record says the field itself holds {a}.",
+    c3_h_q2_lead: "{eq} magic squares — that is the area our approximation of {rt} comes to. And Marimon’s record says the field itself holds {a}.",
     c3_h_q2: "So how big is the band round the true field? {eq}",
     c3_h_q2_hint: "The difference between the two.",
     c3_h_q2_ok: "One whole magic square. And that band is exactly {dsq} — the little corner we ended up with when we put {dtil} in place of the true {d}.",
@@ -620,7 +620,7 @@ registerStrings({
     c3_h_le_btn: "How, then?",
     c3_h_le2: "The same way as always. The band is two strips, each the whole side {s1} long and {e} across, less the little corner they share — and if we forget that corner one more time, {eq}. Turn it round and there is {e} on its own: {div}.",
     c3_h_le3: "And look what that is. It is {etil} — the shave. The number you have worked out four times over was never really an area at all: it was how far our answer was out <strong>along the side</strong>, which is exactly what we needed. {num}.",
-    c3_h_ag1: "And now look at the two rounds side by side. In the first, the block's area fell <strong>short</strong> of the field, so we grew the side. In the second, our square's area went <strong>over</strong>, so we shaved it. But it is the same move both times: take how far out the area is, share it into twice the answer you are holding, and move the side by that much. Only the direction changes.",
+    c3_h_ag1: "And now look at the two rounds side by side. In the first, the block’s area fell <strong>short</strong> of the field, so we grew the side. In the second, our square’s area went <strong>over</strong>, so we shaved it. But it is the same thing every time: you take how far out the area is with your first answer, you share that mistake into as many pieces as twice your first answer, and you use what you find to correct that first answer. Between the first round and the second, you use exactly the same approach. Only the direction of the correction changes.",
     c3_h_ag_btn: "So we could go on?",
     c3_h_ag2: "For ever. Square your answer, see how far the area is out, share it into twice your answer, and shave the side by that much. Then do it again. And it is always a shave after the first round, because from there on every answer we write is a little too big — which is the one thing this whole quest has been careful about. Each {s} is better than the one before it, and there is no last one.",
     c3_h_ag3: "One more round on {r} would take us from {v} to a number right in its first four figures after the dot. Two more, and we should run out of paper before we ran out of rightness.",
@@ -732,7 +732,7 @@ registerStrings({
     c3_h_all2: "Here is {s2} for every single field, each with its own precision — the ones you went back for, and the rest, which I have just done the very same way. Pale is where each of them started.",
     c3_h_all2b: "And I could go on, could I not?",
     c3_h_all3: "One more step, then. Here is {s3}, for all twelve — with both the rounds before it still showing behind, pale: the corner and the line each field had at the start, and the ones it had after the second round.",
-    c3_h_all3b: "This time the shave is smaller than a hundredth on nearly every field — lay it out in hundredths and we should be throwing almost all of it away. Our units have run out again, exactly as the magic lengths did, and then the tenths. So this once I have not rounded it at all. Look how many figures are right now.",
+    c3_h_all3b: "This time the shave is smaller than a hundredth on nearly every field. Our units have run out again, exactly as the magic lengths did, and then the tenths. So this once I have not rounded it at all. Look how many figures are right now.",
     c3_h_fin1: "We have learned so much in this adventure: what a square root is, how to work one out, and how precise that working-out is.",
     c3_h_fin2: "And we have learned to write a half and a quarter in magic lengths, with tenths and hundredths of a magic length sitting to the right of the dot: {half}, and {quarter}.",
     c3_h_the_end: "THE END",
@@ -810,7 +810,7 @@ registerStrings({
 
     c3_a_root1: "Arrêtons-nous un instant. Ce qu’on vient de faire — prendre l’aire d’un champ carré, appelons-la <strong>a</strong>, et retrouver la longueur de son côté, appelons-le <strong>s</strong> — porte un nom.",
     c3_a_root2: "On dit que <strong>s</strong> est la <strong>racine carrée</strong> de <strong>a</strong>, et on l’écrit {sqrt_a}.",
-    c3_a_root3: "Et maintenant tu sais pourquoi on parle de <em>racine</em> : c’est la longueur du côté qui est à la racine d’un champ carré d’aire <strong>a</strong>. Tout le champ pousse à partir d’elle.",
+    c3_a_root3: "Et maintenant tu sais pourquoi on parle de <em>racine</em> : c’est la longueur du côté qui est à la <strong>racine</strong> d’un champ carré d’aire <strong>a</strong>. Tout le champ pousse à partir d’elle.",
     c3_a_root4: "Voyons si on peut trouver la racine carrée de nos autres champs.",
 
     c3_ap_go1: "Alors : {sqrt_a}. On sait qu’elle fait plus de 2 et moins de 3, et ça ne suffit pas pour acheter du fil.",
@@ -856,7 +856,7 @@ registerStrings({
 
     c3_b_eq1: "Remets les quatre ensemble et tu retrouves le champ entier. L’aire, c’est donc {sum}.",
     c3_b_eq2: "Et cette aire, on la connaît déjà. Marimon l’a notée : <strong>{a} carrés magiques</strong>, exactement. Donc :",
-    c3_b_eq3: "Une seule ligne, et tout ce qu’on sait de ce champ est dedans. Il ne reste plus qu’à en déduire <strong>d</strong>.",
+    c3_b_eq3: "Une seule ligne, et tout ce qu’on sait de ce champ est dedans. Il ne reste plus qu’à essayer d’en déduire <strong>d</strong>.",
 
 
     c3_c_off1: "Regarde cette ligne. À gauche, quatre carrés magiques et trois morceaux bizarres. À droite, {a} carrés magiques. Les quatre sont des <strong>deux</strong> côtés — alors enlevons-les des deux côtés, et voyons ce qui reste.",
@@ -976,8 +976,8 @@ registerStrings({
     c3_e_cor1: "Le coin est un petit carré, d’<strong>un quart</strong> de longueur magique de côté. Voici combien il en rentre dans un carré magique :",
     c3_e_cor_q: "Quatre rangées de quatre. Combien de petits coins rentrent dans un carré magique ?",
     c3_e_cor_hint: "4 FOIS 4.",
-    c3_e_cor2: "Seize. Notre coin fait donc <strong>un seizième</strong> de carré magique — et {atil}, l’aire que donne notre réponse, fait <strong>{a} carrés magiques et un seizième</strong>. Un cheveu de plus que ce que le champ contient vraiment.",
-    c3_e_cor3: "Et regarde ce qu’<em>est</em> ce cheveu. C’est un coin — mais pas celui que nous avons barré. L’avoir oublié a obligé les bandes à recouvrir le carré magique toutes seules, alors {dtil} est sorti un tout petit peu plus grand que le vrai {d} — et une bande un peu plus large laisse derrière elle un coin bien à elle. Ce coin, c’est le cheveu. Nous avions dit que nous reviendrions voir ce que cet oubli nous coûtait : voici la facture.",
+    c3_e_cor2: "Seize. Notre coin fait donc <strong>un seizième</strong> de carré magique — et {atil}, l’aire que donne notre réponse, fait <strong>{a} carrés magiques et un seizième</strong>. Un seizième de plus que ce que le champ contient vraiment.",
+    c3_e_cor3: "Et regarde ce qu’<em>est</em> ce seizième. C’est un coin — mais pas celui que nous avons barré. L’avoir oublié a obligé les bandes à recouvrir le carré magique toutes seules, alors {dtil} est sorti un tout petit peu plus grand que le vrai {d} — et une bande un peu plus large laisse derrière elle un coin bien à elle. Ce coin, c’est le seizième. Nous avions dit que nous reviendrions voir ce que cet oubli nous coûtait : voici la facture.",
 
     c3_e_16_1: "Mais attends. <strong>Un seizième</strong> de carré magique — ça fait combien, au juste ? On sait compter le terrain en <strong>petits carrés à fleurs</strong> : ces centièmes de notre dernière aventure, cent dans un carré magique. Les voilà tous.",
     c3_e_16_btn: "On commence à couper !",
@@ -1024,10 +1024,10 @@ registerStrings({
     c3_e_end_next: "Il reste {n} champs qui attendent.",
     c3_e_st1: "Arrêtons-nous une minute pour faire le point sur ce qu’on vient de faire, parce que c’est quelque chose.",
     c3_e_st2: "Chaque fois que tu as un champ carré dont tu connais l’<strong>aire</strong> — appelons-la {a} — mais dont tu ne connais pas le <strong>côté</strong>, et que ce côté est {sqa}, tu sais maintenant en calculer une valeur approchée {approx}. Voici tout, en une ligne :",
-    c3_e_st3: "{aA}, c’est le nombre de <strong>carrés magiques entiers</strong> que tu peux mettre dans {a}, et {sA}, c’est le côté d’un carré de cette aire — {rootA}, que tu reconnais d’un coup d’œil, parce que {aA} est un des nombres carrés de la table du Chapitre 1. Et {rest}, c’est le terrain qui reste — c’est la bande en coin là en bas.",
-    c3_e_st4: "Le dernier morceau, c’est notre {d}. Le terrain qui reste a une aire de {rest}, et c’est <strong>deux</strong> bandes, longues chacune de {sA} — plus le petit carré du coin. On jette le coin et on laisse les deux bandes s’élargir d’un cheveu pour compenser, et cette largeur-là, c’est exactement {d} : {twice}. Alors pour la trouver, on fait comme la dernière fois — on partage le terrain qui reste en {k} morceaux égaux.",
+    c3_e_st3: "{aA}, c’est le nombre de <strong>carrés magiques entiers</strong> que tu peux mettre dans {a}, et {sA}, c’est le côté d’un carré de cette aire — {rootA}, que tu reconnais d’un coup d’œil, parce que {aA} est un des nombres carrés de la table du Chapitre 1.",
+    c3_e_st4: "Notre approximation de {roota}, {s1}, part de {s0eq} et y ajoute notre {d}, qu’on calcule en divisant l’aire qui reste {rest} en autant de morceaux qu’il y a de longueurs magiques dans les deux bandes de hauteur {d} mises bout à bout (et il y en a {k}). Le signe {bar} dit juste ça : on divise le chiffre au-dessus de la barre (on l’appelle le numérateur) en autant de morceaux que nous le demande le chiffre du dessous (on l’appelle le dénominateur). Ne sois pas trop impressionné par cette formule qui a l’air bien compliquée. On va s’entraîner à l’utiliser plein de fois, t’inquiète.",
     c3_e_st5: "Voyons ce que l’astuce donne sur les autres champs.",
-    c3_f_intro: "Douze champs ont brûlé. Trois, tu savais les nommer d’un coup d’œil, un autre nous a donné du fil à retordre — et ces {n}-là arrivent maintenant. Même méthode à chaque fois, et c’est toi qui la mènes.",
+    c3_f_intro: "Douze champs ont brûlé. Trois dont tu as réussi à déterminer la racine carrée d’un seul coup d’œil, un autre qui nous a donné du fil à retordre. Il en reste encore {n}. Même méthode à chaque fois, et c’est toi qui es à la baguette.",
     c3_f_btn: "On y va !",
     c3_f_btn_done: "C’est tout ce qui rentre !",
     c3_f_areq: "Maintenant, enlève ces carrés magiques du champ. Ce qui reste, c’est la bande sur le pourtour : {sA} de long, et {d} de large.",
@@ -1062,7 +1062,7 @@ registerStrings({
     c3_f_ord_4: "le quart",
     c3_f_ord_6: "le sixième",
     c3_f_share_is: "Donc {eq} fait {len}, et {d}, c’est <strong>{ord}</strong> de {len}.",
-    c3_f_lay_intro: "Hum. Pas si facile à faire de tête, hein ? Posons-les toutes par terre : {len} à droite, et les {k} {d} à côté — elles font exactement la même hauteur.",
+    c3_f_lay_intro: "Hum. Pas si facile à faire de tête, hein ? Posons-les toutes les deux côte à côte : {len} à droite, et les {k} {d} à côté — elles font exactement la même hauteur.",
     c3_f_lay_go: "Maintenant, mesure un {d} comme on mesure toujours : pose des dixièmes de longueur magique le long.",
     c3_f_qLay: "Combien de dixièmes as-tu réussi à poser ?",
     c3_f_hLay: "Compte ceux que tu as posés.",
@@ -1124,7 +1124,7 @@ registerStrings({
     c3_f_tot1b: "<strong>{w} longueurs magiques de fil.</strong> Douze clôtures, additionnées deux par deux — et le seul passage délicat, c’était deux dixièmes et huit dixièmes qui font une longueur magique entière à eux deux.",
     c3_f_close: "<strong>{s} graines d’arbre et {w} longueurs magiques de fil.</strong> Et chacun de ces nombres est sorti d’une aire — pas un seul de ces côtés n’a jamais été mesuré, parce qu’aucun ne pouvait l’être. Douze champs ont brûlé, et douze sont prêts à être replantés. Les deux derniers ne sont jamais tombés juste, aussi loin qu’on soit allés — et c’est exactement à ça que sert le mot <strong>environ</strong>.",
     c3_a_back1: "Repense à tout ce qu’on a fait jusqu’ici, toi et moi. Dans tous les champs qu’on a mesurés, on parcourait d’abord les côtés et on trouvait le terrain ensuite.",
-    c3_a_back2: "Cette fois, c’est l’inverse. C’est le terrain que je tiens, et c’est le côté qu’il me faut. On ne l’a jamais fait dans ce sens-là.",
+    c3_a_back2: "Cette fois, c’est l’inverse. C’est l’aire du champ que je connais, et c’est le côté qu’il me faut. On ne l’a jamais fait dans ce sens-là.",
     c3_a_back_ok: "Essayons quand même !",
     c3_a_back_hmm: "Ça a l’air difficile.",
 
@@ -1148,7 +1148,7 @@ registerStrings({
 
     c3_g_in1: "Douze champs, et douze côtés. Il y en a trois dont je suis sûr : 1, 4 et 9 étaient des nombres carrés, et tu as trouvé leurs côtés directement dans la table de multiplication. Les neuf autres, eux, sont tous des <strong>à peu près</strong>.",
 
-    c3_g_in2: "Et avant d’aller dépenser tout ce fil, j’aimerais bien savoir ce que vaut vraiment un <strong>à peu près</strong>. Peut-on le savoir sans retourner jusqu’aux champs pour tout remesurer ?",
+    c3_g_in2: "Et avant d’aller dépenser de l’argent pour acheter tout ce fil, j’aimerais bien savoir ce que vaut vraiment un <strong>à peu près</strong>. Peut-on le savoir sans retourner jusqu’aux champs pour tout remesurer ?",
 
     c3_g_in_yes: "On peut les vérifier !",
     c3_g_in_no: "Je ne vois pas comment.",
@@ -1163,8 +1163,8 @@ registerStrings({
     c3_g_str_ok: "{eq}. Le bloc et les deux bandes font donc exactement le champ — et ce n’est pas du tout un hasard : c’est précisément ce que nous avons fabriqué {dtil} pour obtenir. Ces trois morceaux <strong>sont</strong> le terrain de Marimon, en entier.",
     c3_g_cor_q: "Reste le petit coin. Il fait quelle taille, celui-là ? {eq}",
     c3_g_cor_hint: "Un carré de côté {d}.",
-    c3_g_cor1: "Un <strong>carré magique entier</strong>. Et le voilà, assis dans le coin — du terrain que notre réponse réclame et que le champ n’a pas. Voilà ce que nous a coûté le fait de barrer ce petit coin : les bandes ont dû s’élargir un peu pour le recouvrir, et des bandes élargies laissent derrière elles un coin bien à elles, plus grand.",
-    c3_g_cor2: "Notre réponse réclame donc {sum} carrés magiques, et le champ en contient {a}. Nous dépassons d’un carré magique entier, et ce coin, c’est exactement lui. Sur le champ de 5, le même coin valait un seizième et cela n’avait vraiment aucune importance. Ici, c’est un coin entier, sur {a}.",
+    c3_g_cor1: "Un <strong>carré magique entier</strong>. Et le voilà, assis dans le coin — du terrain que notre approximation a inventé et qui n’est pas dans le champ. Voilà ce que nous a coûté le fait de remplacer {d} par {dtil} pour couvrir l’aire du petit carré {dsq} que nous avons ignoré : les bandes ont dû s’élargir un peu pour le recouvrir, et des bandes élargies laissent derrière elles un autre coin bien à elles, d’aire {dtsq}, un peu plus grand.",
+    c3_g_cor2: "Notre approximation de {rt}, {s1}, crée un carré dont l’aire est de {sum} carrés magiques, alors que le vrai carré en fait {a}. Nous dépassons d’un carré magique entier, le carré {dtsq} que nous venons de calculer. Sur le champ de 5, le même coin valait un seizième de carré magique, c’était bien moins grave. Ici, c’est un coin entier, sur {a}.",
     c3_g_e1: "Maintenant celui-ci, et tu connais le chemin : le champ de {a}, notre réponse {stil}, qui se coupe en {split}. Mêmes quatre morceaux, mêmes quatre couleurs.",
     c3_g_e_end: "{sum} carrés magiques réclamés, et le champ en contient {a}. Un carré magique entier de trop, une deuxième fois — et encore une fois, c’est exactement le coin. Ces deux-là, {r1} et {r2}, sont donc les deux réponses sur lesquelles je n’aimerais pas construire une clôture.",
 
@@ -1190,7 +1190,7 @@ registerStrings({
     c3_g_m_hint: "Ceux dont tu connaissais déjà le côté, tout au début.",
 
     c3_g_m3: "Trois d’entre eux : les champs de 1, 4 et 9. Il n’est jamais rien resté sur ceux-là, il n’y a donc jamais eu de coin à jeter — et leurs côtés ne sont pas <strong>environ</strong> quoi que ce soit. Ils sont exacts.",
-    c3_g_m_q2: "Et maintenant l’autre bout. Deux champs ont un coin plus gros que tous les autres, et ils font la même taille tous les deux. Dis-moi d’abord la plus petite de leurs deux aires.",
+    c3_g_m_q2: "Et maintenant l’autre bout. Deux champs ont un coin plus gros que tous les autres. Dis-moi d’abord la plus petite de leurs deux aires.",
     c3_g_m_h2: "Les deux plus gros coins orange du plateau. Prends le plus petit des deux champs.",
     c3_g_m_ok2: "{r}, oui. Et l’autre ?",
     c3_g_m_q3: "Dis-moi son aire aussi.",
@@ -1206,10 +1206,10 @@ registerStrings({
 
     btn_play_again: "Rejouer",
 
-    c3_h_in1: "Voici le champ {eq} tel qu’il est vraiment, et tracé autour de lui, le carré que décrit notre réponse. Ils partagent leur coin en bas à gauche — et entre les deux bords s’étend une bande de terrain. Cette bande, c’est notre erreur : du terrain que notre réponse réclame et que le champ n’a pas.",
-    c3_h_in1b: "Voici le champ tel qu’il est vraiment, et tracé autour de lui, le carré que décrit notre réponse. Ils partagent leur coin en bas à gauche — et entre les deux bords s’étend une bande de terrain. Cette bande, c’est notre erreur : du terrain que notre réponse réclame et que le champ n’a pas.",
+    c3_h_in1: "Voici le champ {eq} tel qu’il est vraiment, et tracé autour de lui, le carré que décrit notre réponse. Ils partagent leur coin en bas à gauche — et entre les deux bords s’étend une bande de terrain. Cette bande, c’est notre erreur : de l’aire que notre approximation de {d} par {dtil} a ajoutée alors qu’elle n’existe pas dans le vrai champ.",
+    c3_h_in1b: "Voici le champ tel qu’il est vraiment, et tracé autour de lui, le carré que décrit notre réponse. Ils partagent leur coin en bas à gauche — et entre les deux bords s’étend une bande de terrain. Cette bande, c’est notre erreur : de l’aire que notre approximation de {d} par {dtil} a ajoutée alors qu’elle n’existe pas dans le vrai champ.",
 
-    c3_h_in2: "Le vrai côté {ss} est donc un peu plus court que notre {stil}. Appelons la différence {e} — {eq} — et la voilà, à droite de l’image : c’est la largeur de cette bande. Si nous arrivions à calculer {e}, nous pourrions le raboter sur {s1} et avoir une bien meilleure réponse pour {ss}.",
+    c3_h_in2: "Le vrai côté {ss} est donc un peu plus court que notre {stil}. Appelons la différence {e} — {eq} — et la voilà, à droite de l’image : c’est la largeur de cette bande. Si nous arrivions à calculer {e}, nous pourrions le raboter de {s1} et avoir une bien meilleure réponse pour {ss}.",
 
     c3_h_in_yes: "Rabotons !",
     c3_h_in_no: "Plus petite comment ?",
@@ -1257,7 +1257,7 @@ registerStrings({
 
 
 
-    c3_h_ag_never: "Mais voilà l’ennui. Une part sur {k} parts égales d’une longueur magique n’est pas un nombre que nous puissions écrire. Cela ne tombe jamais juste, aussi loin qu’on aille — tu te souviens du tout premier côté que nous avons essayé de mesurer, au tout début ? C’est la même chose. Nous allons donc faire ce que nous avons fait alors : aller jusqu’aux dixièmes et aux centièmes, puis dire <strong>à peu près</strong>.",
+    c3_h_ag_never: "Mais voilà l’ennui. Une part sur {k} parts égales d’une longueur magique n’est pas un nombre que nous pouvons écrire. Cela ne tombe jamais juste, aussi loin qu’on aille — tu te souviens du tout premier côté que nous avons essayé de mesurer, au tout début ? Là, c’est la même chose. Nous allons donc faire ce que nous avons fait alors : aller jusqu’aux dixièmes et aux centièmes, puis dire <strong>à peu près</strong>.",
 
     c3_h_lay_go: "Pose des dixièmes de longueur magique le long de {e}, et voyons combien il en tient.",
     c3_h_lay_q: "Combien de dixièmes entiers tiennent le long de {e} ?",
@@ -1279,7 +1279,7 @@ registerStrings({
     c3_h_q1_lead: "Et voici ce qui rend tout cela possible : nous pouvons calculer exactement ce que vaut cette bande, sans rien mesurer du tout. Notre carré trop grand a un côté de {stil}.",
     c3_h_q1: "Quelle est donc son aire ? {eq}",
     c3_h_q1_hint: "Un carré de côté {g}.",
-    c3_h_q2_lead: "{eq} carrés magiques — voilà ce que réclame notre réponse. Et les registres de Marimon disent que le champ, lui, en contient {a}.",
+    c3_h_q2_lead: "{eq} carrés magiques — voilà l’aire qui correspond à notre approximation de {rt}. Et les registres de Marimon disent que le champ, lui, en contient {a}.",
     c3_h_q2: "Alors, que vaut la bande autour du vrai champ ? {eq}",
     c3_h_q2_hint: "La différence entre les deux.",
     c3_h_q2_ok: "Un carré magique entier. Et cette bande vaut exactement {dsq} — le petit coin que nous nous sommes retrouvés à avoir en mettant {dtil} à la place du vrai {d}.",
@@ -1296,7 +1296,7 @@ registerStrings({
     c3_h_pile_q2: "Et quelle est la hauteur de cette pile — combien mesure {e} en tout ? Regarde le côté du carré magique qui se dresse à côté.",
     c3_h_pile_h2: "La pile fait exactement la hauteur du carré magique, et le côté du carré magique mesure une longueur magique.",
     c3_h_pile_ok2: "{eq}. Empilés les uns sur les autres, ils font exactement une longueur magique — c’est ce que dit le carré magique dressé à côté d’eux.<br>Et c’est un calcul que tu as déjà résolu : quand nous avons trouvé notre toute première part, {k} d’entre elles faisaient elles aussi une longueur magique.",
-    c3_h_qt1: "Maintenant, {stil} moins {e}. Ce n’est pas facile à faire de tête — alors faisons-le par terre. Voici notre côté mis à plat, et comme c’est un quart que nous enlevons, j’ai marqué le tout en quarts.",
+    c3_h_qt1: "Maintenant, {stil} moins {e}. Ce n’est pas facile à faire de tête — alors allons-y doucement. Voici notre côté mis à plat, et comme c’est un quart que nous enlevons, j’ai marqué le tout en quarts.",
     c3_h_qt_btn: "Rabotons-en un !",
     c3_h_qt2: "Et voilà notre {e} qui s’en va — un quart de longueur magique, disparu.",
     c3_h_qt_q1: "Combien reste-t-il de quarts ?",
@@ -1335,12 +1335,12 @@ registerStrings({
     c3_h_hd_h2: "{c} centièmes, la virgule déplacée de deux rangs. Il n’y aura rien à sa gauche.",
     c3_h_hd_ok2: "{d}. Ce qui reste de notre côté fait donc {len} et {d}.",
     c3_h_ck_odd: "Et cette fois, le coin que nous avons ajouté vaut {esq}. Comment le mesurer ?<br>Souviens-toi de ce que la pile nous a dit : {eq6}. {etil} vaut donc une part sur {k} parts égales d’une longueur magique — et voici un carré magique, quadrillé en sixièmes dans les deux sens. Compte-les.",
-    c3_h_ck_a4b: "Et nous n’en avons pas besoin. Souviens-toi de la règle : {rule}. Si nous avions raboté exactement ce qu’il fallait, la bande vaudrait ce petit coin et rien de plus — et le coin que nous avons ajouté vaut {esq}. Nous nous sommes arrêtés un peu avant l’exact, exprès, pour que notre réponse reste bien trop grande ; la vraie bande est donc un peu plus grande que le coin.",
+    c3_h_ck_a4b: "Et nous n’en avons pas besoin. Souviens-toi de la règle : {rule}. Si nous avions raboté exactement ce qu’il fallait, la bande vaudrait ce petit coin et rien de plus — et le coin que nous avons ajouté vaut {esq}. Nous nous sommes arrêtés un peu avant l’exact, exprès, pour que notre réponse reste trop grande ; la vraie bande est donc un peu plus grande que le coin.",
     c3_h_le1: "Une dernière chose, et c’est justement ce dont Eliel a besoin. Toutes les erreurs que nous avons mesurées dans cette quête étaient des <strong>aires</strong> — une bande, un petit coin, tant de carrés à fleurs. Mais du fil, c’est une <strong>longueur</strong>. Voici la bande à nouveau : {band} de carré magique, et l’écart entre les deux bords, c’est {e}. Comment passer de l’une à l’autre ?",
     c3_h_le_btn: "Comment donc ?",
     c3_h_le2: "Comme toujours. La bande, ce sont deux morceaux longs chacun de tout le côté {s1} et larges de {e}, moins le petit coin qu’ils partagent — et si nous oublions ce coin une fois de plus, {eq}. Retourne-la, et voilà {e} tout seul : {div}.",
     c3_h_le3: "Et regarde ce que c’est. C’est {etil} — le rabotage. Le nombre que tu as calculé quatre fois n’était jamais vraiment une aire : c’était de combien notre réponse dépassait <strong>le long du côté</strong>, c’est-à-dire exactement ce qu’il nous fallait. {num}.",
-    c3_h_ag1: "Et maintenant, regarde les deux tours côte à côte. Au premier, l’aire du bloc restait <strong>en dessous</strong> du champ, alors nous avons agrandi le côté. Au second, l’aire de notre carré passait <strong>au-dessus</strong>, alors nous l’avons raboté. Mais c’est le même geste les deux fois : prends de combien l’aire se trompe, partage-le en deux fois la réponse que tu tiens, et déplace le côté d’autant. Seul le sens change.",
+    c3_h_ag1: "Et maintenant, regarde les deux tours côte à côte. Au premier, l’aire du bloc restait <strong>en dessous</strong> du champ, alors nous avons agrandi le côté. Au second, l’aire de notre carré passait <strong>au-dessus</strong>, alors nous l’avons raboté. Mais c’est la même chose à chaque fois : tu prends de combien l’aire se trompe avec ta première approximation, et tu partages cette erreur en un nombre de morceaux égal à deux fois ta première approximation, et tu utilises ce que tu trouves pour corriger ta première approximation. Entre la première approximation et la deuxième, tu utilises exactement la même approche. Seule la direction de la correction change.",
     c3_h_ag_btn: "On pourrait continuer, alors ?",
     c3_h_ag2: "Sans fin. Mets ta réponse au carré, vois de combien l’aire se trompe, partage-le en deux fois ta réponse, et rabote le côté d’autant. Puis recommence. Et c’est toujours un rabotage après le premier tour, car à partir de là chaque réponse que nous écrivons est un peu trop grande — c’est ce dont toute cette quête a pris soin. Chaque {s} vaut mieux que le précédent, et il n’y a pas de dernier.",
     c3_h_ag3: "Un tour de plus sur {r} nous mènerait de {v} à un nombre juste sur ses quatre premiers chiffres après la virgule. Deux de plus, et nous manquerions de papier avant de manquer de justesse.",
@@ -1440,7 +1440,7 @@ registerStrings({
     c3_h_pr3: "Pouvons-nous le calculer ? Je crois bien que oui. Laisse-moi te montrer.",
     c3_h_pr_d1: "Prends le champ {a}, et reviens à la toute première réponse que nous avions trouvée pour lui. Le grand carré, c’est le carré de cette réponse, et le champ lui-même est le trou découpé en son milieu. Ce qui reste tout autour — la bande, {band} — c’est le terrain que la réponse réclame et que le champ n’a pas. Et {e}, c’est ce que nous cherchons vraiment : l’écart entre les deux bords, mesuré en travers.",
     c3_h_pr_d2: "Or la bande, ce sont deux morceaux longs chacun de tout le côté {s2} et larges de {e}, moins le petit coin qu’ils partagent. Oublions ce coin une dernière fois et {eq}.",
-    c3_h_pr_d3: "Retourne-la, et voilà {e} tout seul : {div}. C’est tout — une aire que nous connaissons, partagée en deux fois la réponse que nous tenons. Et c’est très exactement le nombre que nous rabotions depuis le début.",
+    c3_h_pr_d3: "Retourne-la, et voilà {e} tout seul : {div}. C’est tout — une aire que nous connaissons, partagée en deux fois la réponse que nous connaissons déjà. Et c’est très exactement le nombre que nous rabotions depuis le début.",
     c3_h_pr_d3b: "Attention : ce que nous savons calculer, c’est {etil}, et non {e} lui-même. Nous ne pouvons donc qu’<em>approcher</em> de combien nous nous trompons en longueur — alors que nous le savons exactement en aire — mais cela suffit largement pour dire si c’est beaucoup ou plutôt peu.",
     c3_h_pr_b0: "Et le voilà — {etil}. Sur les quatre champs sur lesquels nous sommes revenus, c’est exactement ici que nous l’enlevions pour écrire {s2}. Pas cette fois : nous voulions seulement savoir de combien nous nous trompons, et maintenant nous le savons.",
     c3_h_pr_b2: "Nous pouvons donc enfin l’écrire comme il faut : {pm}.",
@@ -1452,7 +1452,7 @@ registerStrings({
     c3_h_all2: "Voici {s2} pour chacun des champs, chacun avec sa propre précision — ceux sur lesquels tu es revenu, et les autres, que je viens de faire exactement de la même façon. En pâle, là où chacun était parti.",
     c3_h_all2b: "Et je pourrais continuer, n’est-ce pas ?",
     c3_h_all3: "Un pas de plus, alors. Voici {s3}, pour les douze — avec les deux tours précédents encore visibles derrière, en pâle : le coin et la ligne que chaque champ avait au départ, et ceux qu’il avait après le deuxième tour.",
-    c3_h_all3b: "Cette fois, le rabotage est plus petit qu’un centième sur presque tous les champs — pose-le en centièmes et nous en jetterions presque tout. Nos unités sont encore épuisées, exactement comme les longueurs magiques l’ont été, puis les dixièmes. Alors pour une fois, je ne l’ai pas arrondi du tout. Regarde combien de chiffres sont justes maintenant.",
+    c3_h_all3b: "Cette fois, le rabotage est plus petit qu’un centième sur presque tous les champs. Nos unités sont encore épuisées, exactement comme les longueurs magiques l’ont été, puis les dixièmes. Alors pour une fois, je ne l’ai pas arrondi du tout. Regarde combien de chiffres sont justes maintenant.",
     c3_h_fin1: "Nous avons tellement appris dans cette aventure : ce qu’est une racine carrée, comment la calculer, et avec quelle précision on la calcule.",
     c3_h_fin2: "Et nous avons appris à écrire un demi et un quart en longueurs magiques, avec les dixièmes et les centièmes de longueur magique qui se placent à droite de la virgule : {half}, et {quarter}.",
     c3_h_the_end: "FIN",
@@ -4632,7 +4632,8 @@ function hFrameEl(A, o) {
         'box-sizing:border-box; z-index:3; border:3px solid ' + REG.d.ink + ';' +
         'border-left:none;');
     put('left:' + (gx + 20) + 'px; top:' + ((S - T) / 2 - 13) + 'px; white-space:nowrap;' +
-        'font-size:17px; z-index:3; color:' + REG.d.ink + ';').innerHTML = '<strong>e</strong>';
+        'font-size:17px; z-index:3; color:' + REG.d.ink + ';').innerHTML =
+        '<strong>' + E1() + '</strong>';
   }
 
   // ⚠️ The caption is the ANSWER to a question the child is about to be asked, so it is
@@ -4903,6 +4904,7 @@ function hIntro() {
       // lead-in (`c3_h_in_again`) says "the a = 8 field" one line above.
       t(again ? 'c3_h_in1b' : 'c3_h_in1', {
         eq: bold('a = ' + A0), sqrt_a: bold(sqrtHTML(FIELD.A)),
+        d: bold('d'), dtil: bold(DTIL),
       }) + '</p>' +
     // ⚠️ `e`, not `ẽ`. This is the TRUE difference — the one the picture actually shows,
     // between our square's edge and the field's. `ẽ` is a different number and it is born
@@ -4914,7 +4916,7 @@ function hIntro() {
       // ⚠️ `s̃₁ = s + e`, not `s = s̃₁ − e`: the picture shows the big square holding the
       // field PLUS the band, so this way round is reading the picture rather than
       // rearranging it.
-      eq: bold(nw(SUB1 + ' = s + e')),
+      eq: bold(nw(SUB1 + ' = s + ' + E1())),
     }) + '</p>'
   );
   // THE BAND IS COMPUTED, NOT ANNOUNCED (Sylvain). Two questions the child can answer with
@@ -4930,7 +4932,8 @@ function hIntro() {
       () => {
         frame(t('c3_h_band_q'));
         askWithLead(
-          t('c3_h_q2_lead', { eq: hSqEq(H0.g), a: bold(nw('a = ' + A0)) }),
+          t('c3_h_q2_lead', { eq: hSqEq(H0.g), a: bold(nw('a = ' + A0)),
+              rt: bold(sqrtHTML(A0)) }),
           t('c3_h_q2', { eq: hExcessEq(H0.g, A0) }), H0.exc,
           () => {
             frame(t('c3_h_band'));
@@ -5024,7 +5027,7 @@ function hForget() {
     // ⚠️ Stated the way the picture states it — s̃₁ holds the field plus the band — and s̃₂ is
     // DEFINED as the number that makes the line exact again, which is the same move ẽ itself
     // was born by, one level up.
-    eq_true: bold(nw(SUB1 + ' = s + e')),
+    eq_true: bold(nw(SUB1 + ' = s + ' + E1())),
     eq_new: bold(nw(SUB1 + ' &asymp; s + ' + ET1())),
     eq_def: bold(nw(SUB1 + ' = ' + SUB2 + ' + ' + ET1())),
   // ⚠️ On the third field this screen's button IS the hand-off — it must not add a second one
@@ -5598,8 +5601,9 @@ function hCheck() {
                 askWithLead(t('c3_h_fl5', { eq: term(0.05, 0.05) }),
                   t('c3_h_fl_q3'), 0.25, () => {
                     pic({ cut: true, joined: true });
-                    askWithLead(t('c3_h_fl6', { sum: bold(nw('1 + 1 + ' + fmtNum(0.25))) }),
-                      t('c3_h_fl_q4'), 2.25, () => {
+                    askWithLead(t('c3_h_fl6'),
+                      t('c3_h_fl_q4', { sum: bold(nw('1 + 1 + ' + fmtNum(0.25))) }),
+                      2.25, () => {
                         pic({ cut: true, joined: true });
                         askWithLead(t('c3_h_fl7', { n: bold(fmtNum(2.25)) }),
                           t('c3_h_fl_q5'), 0.0225, () => {
@@ -5852,7 +5856,8 @@ function hSevenBand() {
                                        ' + ' + fmtNum(corner))) }), H.g * H.g,
           t('c3_h_7_th'), t('c3_h_7_tok', { v: bold(fmtNum(H.g * H.g)) }),
           () => put(hFrameEl(A, t('c3_h_band_q')),
-            t('c3_h_q2_lead', { eq: hSqEq(H.g), a: bold(nw('a = ' + A)) }),
+            t('c3_h_q2_lead', { eq: hSqEq(H.g), a: bold(nw('a = ' + A)),
+              rt: bold(sqrtHTML(A)) }),
             t('c3_h_q2', { eq: hExcessEq(H.g, A) }), H.exc,
             t('c3_h_7_bh'), t(
               // ⚠️ The exact share is writable on the area-7 field (three quarters) and is
@@ -7650,12 +7655,15 @@ const chapterSteps = [
       }) + '</p>' +
       formula +
       '<p style="margin-top:10px">' + t('c3_e_st3', {
-        a: A, aA: AA, sA: SA, rootA: bold(sqrtHTML(SUBA0)), rest: REST,
+        a: A, aA: AA, sA: SA, rootA: bold(sqrtHTML(SUBA0)),
       }) + '</p>' +
+      // ⚠️ `{bar}` is the fraction bar itself, drawn rather than named — the paragraph is
+      // explaining what that stroke MEANS, so it has to be the stroke and not the word.
       '<p style="margin-top:10px">' + t('c3_e_st4', {
-        d: D, sA: SA, rest: REST, k: K,
-        twice: bold(nw('2 &times; (' + SUB0 + ' &times; ' + DTIL +
-          ') = a &minus; ' + SUBA0)),
+        roota: bold(sqrtHTML('a')), s1: bold(SUB1), d: D, rest: REST, k: K,
+        s0eq: bold(nw(SUB0 + ' = ' + sqrtHTML(SUBA0))),
+        bar: '<span style="display:inline-block; width:24px; vertical-align:middle;' +
+          'border-top:3px solid #3a3a3a;"></span>',
       }) + '</p>' +
       '<p style="margin-top:10px">' + t('c3_e_st5') + '</p>'
     );
@@ -7884,8 +7892,15 @@ const chapterSteps = [
       gameArea.appendChild(gCheckStage(A, 'd'));
       storyHTML(
         '<div class="speaker">Eliel</div>' +
-        '<p>' + t('c3_g_cor1') + '</p>' +
-        '<p style="margin-top:10px">' + t('c3_g_cor2', { sum: V.sum, a: A }) + '</p>'
+        '<p>' + t('c3_g_cor1', {
+          d: bold('d'), dtil: bold(DTIL),
+          dsq: bold(nw('d &times; d')), dtsq: bold(nw(DTIL + ' &times; ' + DTIL)),
+        }) + '</p>' +
+        '<p style="margin-top:10px">' + t('c3_g_cor2', {
+          sum: fmtNum(V.sum), a: A, rt: bold(sqrtHTML(A)),
+          s1: bold(SUB1 + ' = ' + fmtNum(sTilFor(A))),
+          dtsq: bold(nw(DTIL + ' &times; ' + DTIL)),
+        }) + '</p>'
       );
       addButton(t('btn_continue'), nextStep);
     }, t('c3_g_cor_hint', { d: fmtNum(V.d) }));
