@@ -1289,7 +1289,13 @@ function askInline(question, correctAnswer, onCorrect, hint, opts) {
     } else {
       attempts++;
       feedback.className = 'incorrect';
-      feedback.textContent = (attempts >= 2 && hint) ? t('fb_hint', {hint}) : t('fb_notquite');
+      // ⚠️ `hint` may be an ARRAY of hints that escalate: the first wrong answer past the
+      // free one shows hint[0], the next hint[1], and so on, clamped at the last. Passing a
+      // STRING behaves exactly as it always did, so every existing caller is unchanged by
+      // construction — Chapter 4's Part A wanted three hints that give a little more each
+      // time rather than one that gives the answer away on the second try.
+      const hs = Array.isArray(hint) ? hint[Math.min(attempts - 2, hint.length - 1)] : hint;
+      feedback.textContent = (attempts >= 2 && hs) ? t('fb_hint', {hint: hs}) : t('fb_notquite');
       input.value = '';
       input.focus();
     }
